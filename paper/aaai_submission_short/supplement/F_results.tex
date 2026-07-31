@@ -1,0 +1,75 @@
+\section{Full Phase 5B Results and Sensitivities}
+\label{supp:results}
+
+\subsection{Condition metrics}
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+ & Mean regret & Median & Invalid & Harmful & Valid & Abstain & Fail & \(N\) \\
+\midrule
+A & 4.723122 & 0.002880 & 38.89\% & 16.67\% & 61.11\% & 33.33\% & 1 & 18 \\
+B & 1.389345 & 0 & 11.11\% & 11.11\% & 88.89\% & 61.11\% & 1 & 18 \\
+C & 0.250287 & 0 & 0\% & 0\% & 100\% & 83.33\% & 0 & 18 \\
+D & 3.598322 & 0.001440 & 22.22\% & 11.11\% & 77.78\% & 44.44\% & 0 & 18 \\
+\bottomrule
+\end{tabular}
+\caption{Canonical Phase~5B condition metrics under fail-closed
+Interpretation P.  Each condition retains all 18 cells.}
+\end{table*}
+
+C has the strongest aggregate observed profile, with the lowest mean regret,
+no invalid primary selections, no harmful non-abstentions, and valid final
+claims in all cells.  A and B each have one failed unit.  These aggregates do
+not establish uniform superiority.
+
+\subsection{Paired contrasts}
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}lrrl@{}}
+\toprule
+Contrast & All-cell mean & Complete-pair mean & Cluster interval \\
+\midrule
+\(C-B\) & -1.139058 & -1.206062 & [-2.444444, 0.166328] \\
+\(B-A\) & -3.333777 & -3.735074 & [-4.111998, -2.555556] \\
+\(D-C\) & +3.348035 & +3.348035 & [1.807181, 4.888889] \\
+\(D-A\) & -1.124800 & -2.426259 & [-2.138489, -0.111111] \\
+\bottomrule
+\end{tabular}
+\caption{Paired routing-regret differences.  Negative values favor the first
+condition.  Completed-pair counts are 17, 16, 18, and 17.  Intervals use only
+two scenario clusters and are descriptive.}
+\end{table*}
+
+\paragraph{Primary-contrast concentration.}
+For \(C-B\), the largest absolute cell difference is \(-22\), and that cell
+contributes 88.1\% of total absolute contrast magnitude.  Removing it changes
+the mean to \(+0.088056\).  Scenario means are \(+0.166328\) for GARCH and
+\(-2.444444\) for structural breaks; the five-cell diagnostic subset has mean
+zero.  Seed-specific means are \(0\), \(-3.293194\), and \(-0.123982\) for
+seeds 41100001--41100003.
+
+\paragraph{Instruction contrast.}
+For \(B-A\), the completed-pair mean is \(-3.735074\) over 16 pairs and the
+trimmed mean is \(-2.235764\).  Scenario means are \(-4.111998\) for GARCH and
+\(-2.555556\) for structural breaks.  Its direction is less dependent on one
+extreme cell than \(C-B\), while remaining limited to this pilot.
+
+\paragraph{Specialized versus unified sequential.}
+All 18 \(D-C\) pairs completed.  Scenario means are \(+1.807181\) for GARCH
+and \(+4.888889\) for structural breaks, and the direction remains positive
+after excluding the largest absolute cell.  These values characterize the
+tested bundles and do not isolate persona identity.
+
+\paragraph{Bundled comparison.}
+The all-cell \(D-A\) mean is \(-1.124800\), whereas the 17 completed-pair mean
+is \(-2.426259\).  The non-diagnostic-subset mean is exactly zero,
+illustrating subset heterogeneity.
+
+Median routing regret is near zero for several conditions while mean regret
+differs sharply, showing that rare severe errors rather than uniform
+average-case changes drive several comparisons.  This motivates reporting
+cell contrasts and sensitivities rather than only an aggregate mean
+\citep{ZhaiEtAl2021CVaR}.

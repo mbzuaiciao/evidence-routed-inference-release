@@ -1,0 +1,35 @@
+\section{Phase 4J Deterministic and LLM Baselines}
+\label{supp:phase4j}
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+System & Mean regret & Invalid & Harmful & Claim valid & Complete & Failed \\
+\midrule
+Oracle & 0.000 & 0.000 & 0.000 & 1.000 & 18 & 0 \\
+Adaptive deterministic & 0.0013 & 0.000 & 0.000 & 1.000 & 18 & 0 \\
+Unconstrained specialized & 0.682 & 0.056 & 0.000 & 0.944 & 18 & 0 \\
+Monolithic & 4.084 & 0.278 & 0.056 & 0.722 & 17 & 1 \\
+Static deterministic & 4.890 & 0.222 & 0.222 & 0.778 & 18 & 0 \\
+Evidence-constrained Phase 4A & 20.375 & 1.000 & 0.000 & 0.000 & 0 & 18 \\
+\bottomrule
+\end{tabular}
+\caption{Phase~4J pilot baselines, \(N=18\) retained cells per system.  The
+oracle uses hidden truth.  The constrained row reflects integration failures
+and is not interpretable as model-reasoning quality.}
+\end{table*}
+
+The adaptive deterministic policy applies fixed diagnostic-acquisition,
+routing, and abstention rules and uses no LLM at runtime.  Its advantage over
+static routing is concentrated in structural-break cells where acquiring
+stability evidence prevents high-loss decisions; GARCH mean regret is
+approximately 0.003 for both deterministic policies.  The policy was
+co-developed with the benchmark and directly encodes eligibility rules.  It
+therefore supplies a formalizability boundary, not evidence that deterministic
+systems generally dominate language models or a second primary contribution.
+
+The evidence-constrained Phase~4A row records integration failure and cannot
+be read as language-model reasoning quality.  Phase~4J nevertheless retains
+all 108 intended outputs, including terminal failures, rather than dropping
+them from the denominator.

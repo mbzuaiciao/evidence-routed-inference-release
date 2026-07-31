@@ -1,0 +1,42 @@
+benchmark_version: phase4b-0.1
+tier: deadline
+run_label: phase4b-deadline
+output_root: runs/phase4b
+scenario_source: configs/benchmark/phase3a-mini.yaml
+scenario_ids: [iid-gaussian-n120, iid-gaussian-n300, ar1-moderate, ar1-strong, garch-moderate, garch-persistent, structural-mean-break, structural-variance-break]
+return_seeds: [41200001, 41200002, 41200003, 41200004, 41200005, 41200006, 41200007, 41200008, 41200009, 41200010]
+seed_namespace: phase4b-deadline-v1
+systems: [static-deterministic-router, adaptive-deterministic-policy, monolithic-agent, unconstrained-specialized-agents, evidence-constrained-phase4a-agents, oracle]
+regimes: [full-information, budgeted-observation, open-world-provenance]
+conditions:
+  - {condition_id: full-structured, regime: full-information, initial_groups: [returns-summary, linear-dependence, squared-dependence, distribution, stability, structured-provenance], diagnostic_budget: 0, sensitivity_budget: 0, diagnostic_costs: &costs {linear-dependence: 1.0, squared-dependence: 1.5, distribution: 1.0, stability: 1.5}, critical_groups: [], provenance_template: full-structured, ambiguity: none}
+  - {condition_id: returns-only, regime: budgeted-observation, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: incomplete, ambiguity: high}
+  - {condition_id: linear-only, regime: budgeted-observation, initial_groups: [returns-summary, linear-dependence], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: incomplete, ambiguity: moderate}
+  - {condition_id: distribution-only, regime: budgeted-observation, initial_groups: [returns-summary, distribution], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: incomplete, ambiguity: moderate}
+  - {condition_id: conflicting-weak, regime: budgeted-observation, initial_groups: [returns-summary, linear-dependence, distribution], diagnostic_budget: 1, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: incomplete, ambiguity: conflicting weak diagnostics}
+  - {condition_id: squared-hidden, regime: budgeted-observation, initial_groups: [returns-summary, linear-dependence, distribution, stability], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence], provenance_template: incomplete, ambiguity: squared dependence hidden}
+  - {condition_id: stability-hidden, regime: budgeted-observation, initial_groups: [returns-summary, linear-dependence, squared-dependence, distribution], diagnostic_budget: 1, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [stability], provenance_template: incomplete, ambiguity: stability hidden}
+  - {condition_id: provenance-explicit, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: explicit-complete, ambiguity: none}
+  - {condition_id: provenance-incomplete, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: incomplete, ambiguity: incomplete}
+  - {condition_id: provenance-hedged, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: hedged-counts, ambiguity: hedged counts}
+  - {condition_id: provenance-conflicting, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: conflicting-counts, ambiguity: conflicting counts}
+  - {condition_id: provenance-missing-failures, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: missing-failed-trials, ambiguity: missing failures}
+  - {condition_id: provenance-multiple-markets, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: multiple-markets-windows, ambiguity: multiple markets and windows}
+  - {condition_id: provenance-unknown-dependence, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: unknown-dependence, ambiguity: unknown trial dependence}
+  - {condition_id: provenance-irrelevant, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: irrelevant-prose, ambiguity: irrelevant prose}
+  - {condition_id: provenance-injection-data, regime: open-world-provenance, initial_groups: [returns-summary], diagnostic_budget: 2, sensitivity_budget: 1, diagnostic_costs: *costs, critical_groups: [squared-dependence, stability], provenance_template: prompt-injection-data, ambiguity: untrusted instruction-like prose}
+provider_mode: live
+model: {provider: explicit-transport, model: configured-live-model, model_version: null, temperature: 0.0, maximum_response_tokens: 600, maximum_input_tokens: 1200, maximum_model_calls: 4, retries: 1, timeout_seconds: 20.0, input_cost_per_million_tokens: 5.0, output_cost_per_million_tokens: 15.0, expected_input_token_fraction: 0.5, expected_output_token_fraction: 0.5, expected_retry_rate: 0.05}
+allowed_tools: [linear-dependence, squared-dependence, distribution, stability, iid-gaussian-sharpe, mertens-psr, hac-sharpe, circular-block-bootstrap]
+input_frequency: periodic-returns
+periods_per_year: null
+benchmark_sharpe: 0.0
+method_metadata_version: phase1-method-catalog-1.0
+confidence_level: 0.95
+hac_bandwidth: 5
+bootstrap_block_length: 10
+bootstrap_replications: 200
+bootstrap_seed: 42200000
+loss_profile: validity-first
+independent_review_complete: false
+confirmation_run: false

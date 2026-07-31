@@ -1,0 +1,124 @@
+\section{ERI Task and Benchmark}
+\label{sec:task-benchmark}
+
+\paragraph{Task.}
+ERI separates method execution from admissibility:
+\[
+\begin{aligned}
+\text{data} &\longrightarrow \text{diagnostic evidence}\\
+&\longrightarrow \text{eligibility}
+\longrightarrow \text{method or abstention}.
+\end{aligned}
+\]
+Diagnostics record whether an assumption is supported, contradicted, or
+inconclusive.  Eligibility rules cite this evidence and distinguish a primary
+method from weakened or sensitivity-only alternatives.  If no admissible
+primary method remains, or a fail-closed condition applies, the system
+abstains.  Exact schemas, evidence fields, and abstention rules appear in
+Supplement Sections A--B.
+
+Typed evidence makes the decision boundary auditable without making the
+infrastructure itself the scientific contribution.  Each item records the
+claim tested, whether it is supported, contradicted, or inconclusive, the
+diagnostic version, numerical result when available, and scope warnings.
+Eligibility records
+retain reasons and evidence references, while decisions distinguish primary,
+weakened, and sensitivity-only procedures.  This representation lets the
+evaluation locate an error in evidence acquisition, eligibility assessment,
+or final selection.
+
+The router is fail-closed.  Missing required evidence cannot be interpreted as
+support, contradicted validity conditions cannot be overridden by a fluent
+rationale, and inconclusive evidence remains distinct from both support and
+contradiction.  Decisions preserve the versioned diagnostic result and the
+evidence identifiers used by every eligibility judgment.  These constraints
+make it possible to audit whether a failure arose before or after the
+scientific boundary was evaluated.
+
+\paragraph{Statistical setting.}
+The task is inference for the unannualized sample Sharpe ratio of excess
+returns.  Four registered candidates are IID Gaussian inference, Mertens
+non-Gaussian variance with frequentist Probabilistic Sharpe Ratio, a
+Bartlett/Newey--West HAC procedure, and circular-block bootstrap.  IID
+Gaussian and Mertens procedures retain an IID basis; HAC and block bootstrap
+permit serial dependence under their registered conditions.  Full definitions
+and diagnostic thresholds appear in Supplement Sections B--C.  Diagnostics
+cover input quality, dependence in returns and squared returns, distribution
+shape, split-sample stability, and structured research provenance.  No HAC
+bandwidth or bootstrap block length is inferred silently.
+
+The dependence checks include returns and squared returns because conditional
+heteroskedasticity may be visible in the latter even when linear
+autocorrelation is weak.  HAC propagates both sources through the Sharpe
+influence function.  Mertens uses plug-in skewness and raw kurtosis, while PSR
+is interpreted as a frequentist probability under the registered
+approximation rather than a posterior probability.  Bootstrap execution is
+circular and requires an explicit block length, replication count, and seed.
+These conventions are fixed before evaluation.
+
+The frozen pilot uses two synthetic families and seeds 41100001--41100003.
+\texttt{garch-persistent} exhibits persistent conditional
+heteroskedasticity: IID procedures are ineligible, while HAC and block
+bootstrap are eligible when the registered finite-fourth-moment condition
+holds.  Under \texttt{structural-mean-break}, a stable full-sample Sharpe
+target is not well defined, so all four procedures are ineligible and
+abstention is required.  Hidden eligibility truth is never exposed to the
+evaluated systems.
+
+The structural-break family is deliberately different from a difficult but
+estimable case.  When split-sample stability contradicts a common full-sample
+target, robust standard errors do not restore the target's meaning.  The
+correct benchmark action is therefore abstention, not escalation from IID to
+HAC or bootstrap.  By contrast, persistent GARCH preserves a stable target but
+requires dependence-robust methods.  Together, the families distinguish
+method misspecification from target invalidity.
+
+\paragraph{Information regimes.}
+The 18 matched cells cross the two families and seeds with three information
+regimes.  Full-information cells expose all structured diagnostics; budgeted
+cells hide a dependence or stability group that can be acquired within a
+fixed budget; open-world cells provide explicit, conflicting, or
+instruction-like research provenance.  The complete cell registry and
+visibility rules are in Supplement Section D.  These regimes test not only
+whether a system recognizes a diagnostic result, but whether it requests
+missing evidence within budget and resists treating provenance text as a new
+instruction.
+
+Budgeted observation makes evidence acquisition part of the decision while
+keeping the allowed diagnostic set fixed.  Open-world provenance is data, not
+an instruction channel: workflow prompts require the system to assess its
+relevance and consistency without allowing embedded directive-like text to
+change the task.  Full-information cells isolate routing after evidence is
+already available.  Each scenario--seed combination appears in all three
+regimes, yielding six cells per regime and 18 matched cells in total.
+
+\paragraph{Evaluation.}
+The benchmark loss \(L_i\) combines prespecified penalties for interval
+behavior, invalid selection, harmful non-abstention, unnecessary abstention,
+execution failure, and runtime.  A hidden-truth oracle selects the
+minimum-loss eligible action for the matched cell.  Routing regret is
+\[
+\RoutingRegret_i=\max\{0,L_i-L_i^{\mathrm{oracle}}\},
+\]
+so lower is better.  An invalid primary selection chooses an ineligible
+method, proceeds when the target is undefined, or fails execution; a claim is
+valid only when execution succeeds and the primary selection is valid.  Loss
+weights and oracle construction are policy choices documented in
+Supplement Section D, not universal scientific constants.
+
+All intended outputs remain in the denominator, including terminal failures.
+The oracle is evaluator-only: it uses registered hidden truth and disjoint
+simulation draws, never information available to the evaluated workflow.
+Regret therefore measures excess decision loss relative to a matched-cell
+reference, not whether a workflow can reproduce hidden labels from its visible
+prompt.
+
+The component penalties separate scientifically different errors.  Invalid
+selection marks an ineligible primary method or continuation when the target
+is undefined; harmful non-abstention identifies the latter failure
+specifically; unnecessary abstention penalizes refusing when an eligible
+primary method is available.  Claim validity requires successful execution and
+a valid primary decision.  Runtime and interval behavior enter the registered
+loss but do not replace these categorical validity outcomes.  Reporting both
+loss and its components prevents a low average from masking an inadmissible
+decision.

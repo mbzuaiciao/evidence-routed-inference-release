@@ -1,0 +1,70 @@
+\section{Statistical Procedures and Mathematical Details}
+\label{supp:methods}
+
+\subsection{Conventions}
+
+For excess returns \(r_1,\ldots,r_n\), the reported mean, sample standard
+deviation, and unannualized sample Sharpe are
+\[
+\bar r=\frac{1}{n}\sum_{t=1}^n r_t,\qquad
+s=\sqrt{\frac{1}{n-1}\sum_{t=1}^n(r_t-\bar r)^2},\qquad
+\widehat S=\frac{\bar r}{s}.
+\]
+Thus \(s\) uses \(\mathrm{ddof}=1\).  Sampling frequency is never inferred.
+If an explicit frequency \(P\) is supplied, naive square-root-of-time
+annualization is \(\widehat S_{\mathrm{annual}}=\sqrt{P}\widehat S\); all
+pilot methods and benchmarks remain on the unannualized per-period scale.
+
+\subsection{IID Gaussian and Mertens/PSR}
+
+The IID Gaussian approximation uses
+\[
+\widehat{\operatorname{Var}}(\widehat S)
+=\frac{1+\widehat S^2/2}{n}.
+\]
+Tests against benchmark \(S_0\) evaluate the null standard error at \(S_0\).
+Using uncorrected plug-in skewness \(\widehat\gamma_3\) and raw kurtosis
+\(\widehat\gamma_4\), the Mertens non-Gaussian IID variance is
+\[
+\widehat{\operatorname{Var}}_M(\widehat S)
+=\frac{1-\widehat\gamma_3\widehat S+
+(\widehat\gamma_4-1)\widehat S^2/4}{n}.
+\]
+The Probabilistic Sharpe Ratio is
+\[
+PSR(S_0)=\Phi\!\left(
+\frac{\widehat S-S_0}
+{\sqrt{\widehat{\operatorname{Var}}_M(\widehat S)}}\right).
+\]
+Despite its name, PSR is a frequentist normal-approximation probability, not
+a Bayesian posterior probability.  Both methods assume IID returns.
+
+\subsection{HAC influence-function uncertainty}
+
+Let \(e_t=r_t-\mu\), \(\sigma^2=E[e_t^2]\), and \(S=\mu/\sigma\).  The Sharpe
+influence function is
+\[
+IF_t=\frac{e_t}{\sigma}
+-\frac{S}{2\sigma^2}(e_t^2-\sigma^2).
+\]
+The second term makes dependence in squared returns part of the uncertainty.
+With explicit bandwidth \(L\), lag covariance
+\(\widehat\gamma_k=n^{-1}\sum_{t=k+1}^n IF_tIF_{t-k}\), and Bartlett weights,
+\[
+\widehat\Omega=\widehat\gamma_0+
+2\sum_{k=1}^L\left(1-\frac{k}{L+1}\right)\widehat\gamma_k,\qquad
+\widehat{SE}_{HAC}=\sqrt{\widehat\Omega/n}.
+\]
+The implementation centers the plug-in influence series and rejects
+nonpositive or materially negative long-run variance rather than clipping it.
+Bandwidth is always explicit.
+
+\subsection{Circular-block bootstrap}
+
+Each bootstrap sample concatenates circular blocks from uniformly drawn start
+indices, applies modulo-\(n\) indexing, truncates to exactly \(n\), and
+recomputes \(\widehat S\).  Block length, replication count, and random seed
+are mandatory.  Linear-interpolation empirical quantiles form the interval.
+A degenerate-variance resample raises with its replication number rather than
+being silently skipped.  The method can preserve short-range dependence when
+block length is sensible but is not valid under arbitrary nonstationarity.

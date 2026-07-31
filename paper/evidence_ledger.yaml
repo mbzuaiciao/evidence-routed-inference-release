@@ -1,0 +1,817 @@
+schema_version: eri-paper-evidence-ledger-v1
+ledger_status: proposed-awaiting-user-review
+created_at: "2026-07-26"
+base_branch: feature/phase5-scientific-analysis
+base_commit: 9c825aff062046e1549806643450bb75ca74682a
+claim_policy:
+  default_claim_level: pilot-descriptive
+  population_inference_permitted: false
+  phase5b_canonical_failure_treatment: >-
+    routing_regret = max(0, assigned_failed_loss - oracle_loss)
+  phase5b_direct_regret_one_status: sensitivity-only
+  operational_counts_policy: >-
+    Planned calls are not observed calls. Transcript-only quantities must not be
+    described as original-artifact verified.
+
+sources:
+  phase4j_scientific_dossier:
+    path: docs/phase5-scientific-analysis.md
+    sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    status: repository-canonical-analysis
+  phase4j_archive_manifest:
+    path: external-artifact://phase4j/archive-manifest.json
+    sha256: b2101b521ce4b43a6a97aae68fd6d5fbb7460a0da2ab41f5a4e595ff4ea042f9
+    status: repository-canonical-archive-manifest
+  phase4j_benchmark_config:
+    path: configs/benchmark/phase4b-live-pilot.yaml
+    sha256: b344df296451d9584eeb10265ae93d42b4c78c2bd5acffbb138f3204620ee1d0
+    status: frozen-configuration-source
+  phase4j_provider_config:
+    path: external-artifact://phase4j/provider-policy.yaml
+    sha256: afcb3aa36aacb691b5b1e0960d1f40ed9a6c4095d3929bc522761edfa958f8d9
+    status: frozen-provider-policy-source
+  phase4j_metric_implementation:
+    path: src/eri/benchmark/phase4b_evaluation.py
+    sha256: 38acc8650bec0a8b1bc25cbef114564a6c658c2d6afeaba5d1bb2fc9c34f5474
+    status: deterministic-implementation-source
+  phase4j_loss_implementation:
+    path: src/eri/benchmark/losses.py
+    sha256: b3276ec509b24a6d2b34978fe4337eecf206bceed11d64034bcea06815fe9e30
+    status: deterministic-implementation-source
+  phase4j_execution_implementation:
+    path: external-artifact://phase4j/live-execution-implementation.py
+    sha256: 8699d2726b514c5104d2ac614ba21cc6f4e4dfc34fec35aefdf9090259110670
+    status: deterministic-implementation-source
+  phase5b_derived_manifest:
+    path: external-artifact://phase5b-v2/analysis/derived/derived_manifest.json
+    sha256: e962f8d7aa8be6c817a506a11e4bce9c5ded101802561ce1d55e0717b1a66205
+    status: canonical-recovered-derived-manifest
+  phase5b_condition_metrics:
+    path: external-artifact://phase5b-v2/analysis/derived/condition_metrics.json
+    sha256: 652fbc54a4eeb591ccff7d069f22707a87eb8b8b0c4d4b5297a7d47ccb1867be
+    status: canonical-deterministic-recomputation
+  phase5b_paired_contrasts:
+    path: external-artifact://phase5b-v2/analysis/derived/paired_contrasts.json
+    sha256: 5deca1db6a22a4bee4309e227e85875a0c9a304f05713fb67254beeaedbfda1a
+    status: canonical-deterministic-recomputation
+  phase5b_uncertainty:
+    path: external-artifact://phase5b-v2/analysis/derived/uncertainty_results.json
+    sha256: 01688e5b3b50e77a8953b3dd099fcf14d73f4b00ea8da349b240f575adca626a
+    status: canonical-deterministic-recomputation
+  phase5b_sensitivity:
+    path: external-artifact://phase5b-v2/analysis/derived/sensitivity_analysis.csv
+    sha256: eb07de77da80efd495567c40344ceee14e385232b53c6974475c06158ff902f4
+    status: canonical-deterministic-recomputation
+  phase5b_failure_reconstruction:
+    path: external-artifact://phase5b-v2/analysis/derived/failure_reconstruction.json
+    sha256: 462a091be9e2f1b4582fcd547868bf2303f0e1708f3bab0f7e0534f85bf04fed
+    status: canonical-deterministic-reconstruction
+  phase5b_recomputation_report:
+    path: external-artifact://phase5b-v2/analysis/derived/recomputation_report.md
+    sha256: e4abd70a2871a240dbcb38c78da55719e0c602da6f87957ca962044efb83ae52
+    status: canonical-recomputation-report
+  phase5b_recomputation_script:
+    path: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    sha256: 72534cf76dab35b0472e69b3e6ffb9de40ffc8626a945f6e3b625693b949af69
+    status: deterministic-derivation-script
+  phase5b_original_aggregate:
+    path: external-artifact://phase5b-v2/v2-live-pilot/aggregate_metrics.json
+    sha256: d7a65e01c28b2550105c327185e52de85c09b3a5d30a6992d5f71cf32686e68d
+    status: recovered-original-artifact
+  phase5b_original_sentinel:
+    path: external-artifact://phase5b-v2/v2-live-pilot/sentinel.json
+    sha256: ac1f35162ae8e9395b6c16d963af7be244823b09a59293c8df77072fc58cf6d5
+    status: recovered-original-artifact
+  phase5b_recovery_manifest:
+    path: external-artifact://phase5b-v2/recovery_manifest.json
+    sha256: 8dfa304850abeb5d9fd52262ec946ec3a6d0db93895b37930bc84cadf3475c49
+    status: recovery-time-preservation-manifest
+  phase5b_freeze:
+    path: external-artifact://phase5b-v2/provenance/phase5b-prompt-decomposition-ablation-v2.freeze.json
+    sha256: b5cae3d5d0f334ee099cbd5875a3752854c184ab09f5f30ef18317cda142f1dc
+    status: recovered-original-freeze
+  phase5b_preregistration:
+    path: external-artifact://phase5b-v2/provenance/phase5b-preregistered-analysis-plan.md
+    sha256: c563dacd49600d89c9ca1a4d466cddf32f53ad93e3474bfa6f72710eaac6a511
+    status: recovered-preregistered-analysis-plan
+
+claims:
+  - claim_id: phase4j-design-inventory
+    section: methods.benchmark-construction
+    description: Phase 4J evaluates 18 matched cells, six systems, and 108 retained system outputs.
+    value:
+      scenarios: 2
+      return_seeds: 3
+      information_regimes: 3
+      matched_cells: 18
+      systems: 6
+      retained_outputs: 108
+      completed_outputs: 89
+      failed_outputs: 19
+    units: counts
+    denominator: 108 intended system-cell outputs
+    estimand: frozen benchmark inventory and retained-denominator accounting
+    evidence_class: directly-supported-archive-manifest-and-config
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase4j/archive-manifest.json
+    source_sha256: b2101b521ce4b43a6a97aae68fd6d5fbb7460a0da2ab41f5a4e595ff4ea042f9
+    source_field_or_row: summary_counts; docs/phase5-scientific-analysis.md sections 1.1-1.3
+    derivation_script: null
+    failure_treatment: all 108 intended outputs retained; 19 terminal failures remain in denominator
+    caveats:
+      - Only two scenario families and three seeds were evaluated.
+      - The run is a single-provider pilot.
+    permitted_wording: Phase 4J evaluated 18 matched cells and retained all 108 intended system outputs.
+    prohibited_wording: Phase 4J is a population-representative or confirmatory benchmark.
+
+  - claim_id: phase4j-benchmark-dimensions
+    section: methods.benchmark-construction
+    description: The frozen cells cross two scenarios, three seeds, and three information regimes.
+    value:
+      scenarios: [garch-persistent, structural-mean-break]
+      seeds: [41100001, 41100002, 41100003]
+      regimes: [full-information, budgeted-observation, open-world-provenance]
+    units: categorical design levels
+    denominator: 18 matched cells
+    estimand: frozen experimental design
+    evidence_class: directly-supported-frozen-configuration
+    claim_level: pilot-descriptive
+    canonical_source: configs/benchmark/phase4b-live-pilot.yaml
+    source_sha256: b344df296451d9584eeb10265ae93d42b4c78c2bd5acffbb138f3204620ee1d0
+    source_field_or_row: scenario_ids; return_seeds; regimes; conditions
+    derivation_script: null
+    failure_treatment: not applicable
+    caveats:
+      - Information conditions are scenario-specific frozen cells, not a full Cartesian expansion of every listed condition.
+    permitted_wording: The pilot spans two time-series scenarios, three fixed return seeds, and three information-availability regimes.
+    prohibited_wording: The benchmark spans the full space of statistical inference problems.
+
+  - claim_id: phase4j-provider-model-policy
+    section: methods.provider-configuration
+    description: Phase 4J used the pinned Alibaba Singapore qwen3.7-max provider policy.
+    value:
+      provider: alibaba
+      model: qwen3.7-max
+      region: singapore
+      workspace_id: [omitted-release-workspace-id]
+      maximum_output_tokens: 4096
+      temperature: null
+      thinking_enabled: false
+      retries: 0
+      repairs: 0
+      timeout_seconds: 90
+    units: configuration values
+    denominator: every Phase 4J live model call
+    estimand: frozen live-provider execution policy
+    evidence_class: directly-supported-provider-configuration
+    claim_level: implementation-grounded
+    canonical_source: external-artifact://phase4j/provider-policy.yaml
+    source_sha256: afcb3aa36aacb691b5b1e0960d1f40ed9a6c4095d3929bc522761edfa958f8d9
+    source_field_or_row: approved_workspace_id; pinned_model; region; maximum_output_tokens; max_retries; allow_schema_repair
+    derivation_script: null
+    failure_treatment: zero retries and zero schema repair
+    caveats:
+      - Results do not establish cross-provider or cross-model generality.
+    permitted_wording: The live pilot used Alibaba qwen3.7-max in the pinned Singapore workspace with zero retries and repairs.
+    prohibited_wording: The findings generalize to other providers or model families.
+
+  - claim_id: phase4j-implementation-provenance
+    section: methods.implementation-provenance
+    description: Phase 4J execution, freeze, and archived-run identities.
+    value:
+      execution_commit: ada98aa1e7a9789ea4cbb8943e3abd6e22150183
+      freeze_fingerprint: sha256:3a5945d299af48b941488ebcbf3b4f8dd718c54796410af3bfaca7e59e517396
+      raw_archive_sha256: sha256:6bf634651ea48b941488ebcbf3b4f8dd718c54796410af3bfaca7e59e517396
+      raw_archive_file_count: 1862
+      raw_archive_uncompressed_bytes: 10230911
+    units: identifiers, file count, and bytes
+    denominator: one Phase 4J live-run archive
+    estimand: implementation and artifact identity
+    evidence_class: archive-manifest-backed
+    claim_level: implementation-grounded
+    canonical_source: external-artifact://phase4j/archive-manifest.json
+    source_sha256: b2101b521ce4b43a6a97aae68fd6d5fbb7460a0da2ab41f5a4e595ff4ea042f9
+    source_field_or_row: execution_commit_sha; freeze_fingerprint; complete_run
+    derivation_script: null
+    failure_treatment: not applicable
+    caveats:
+      - The hashed raw archive is referenced by the manifest but absent from this clean worktree.
+    permitted_wording: Phase 4J results are bound to the recorded execution commit, freeze, and archive digest.
+    prohibited_wording: The raw Phase 4J archive was independently reverified during this ledger phase.
+
+  - claim_id: phase4j-system-oracle
+    section: results.phase4j-system-metrics
+    description: Oracle system metrics across the 18 matched cells.
+    value: {mean_routing_regret: 0.000, invalid_selection_rate: 0.000, harmful_nonabstention_rate: 0.000, final_claim_validity_rate: 1.000, abstentions: 9, completed: 18, failed: 0}
+    units: rates, mean loss difference, and counts
+    denominator: 18 cells
+    estimand: per-system fail-closed aggregate
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 2 table, system=oracle
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: no failures
+    caveats: [Oracle has access to hidden ground-truth eligibility labels and is not a deployable policy.]
+    permitted_wording: The oracle reference had zero mean routing regret on these 18 cells.
+    prohibited_wording: The oracle is an operationally available system.
+
+  - claim_id: phase4j-system-adaptive-deterministic
+    section: results.phase4j-system-metrics
+    description: Adaptive deterministic policy metrics across the 18 matched cells.
+    value:
+      mean_routing_regret: 0.001297193836243632
+      mean_routing_regret_display: 0.0013
+      invalid_selection_rate: 0.000
+      harmful_nonabstention_rate: 0.000
+      final_claim_validity_rate: 1.000
+      abstentions: 9
+      completed: 18
+      failed: 0
+    units: rates, mean loss difference, and counts
+    denominator: 18 cells
+    estimand: per-system fail-closed aggregate
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 2 table, system=adaptive-deterministic-policy
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: no failures
+    caveats:
+      - This is a benchmark-specific engineered baseline with diagnostic access.
+      - Its advantage over static routing was concentrated in structural-break cells.
+    permitted_wording: The adaptive deterministic policy was the strongest deployable Phase 4J baseline, with approximately 0.0013 mean regret in this pilot.
+    prohibited_wording: The adaptive policy is universally optimal or directly comparable to an unguided general-purpose agent.
+
+  - claim_id: phase4j-system-unconstrained-specialized
+    section: results.phase4j-system-metrics
+    description: Unconstrained specialized-agent metrics across the 18 matched cells.
+    value: {mean_routing_regret: 0.682, invalid_selection_rate: 0.056, harmful_nonabstention_rate: 0.000, final_claim_validity_rate: 0.944, abstentions: 9, completed: 18, failed: 0, dispatched_calls: 72}
+    units: rates, mean loss difference, and counts
+    denominator: 18 cells; 72 live component calls for dispatch count
+    estimand: per-system fail-closed aggregate
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 2 table, system=unconstrained-specialized-agents
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: no retained unit failures
+    caveats:
+      - Architecture bundles role prompts, turn count, context accumulation, and interfaces.
+      - Phase 4J alone does not isolate a mechanism.
+    permitted_wording: Unconstrained specialized agents had 0.682 mean regret and zero harmful non-abstention in this 18-cell pilot.
+    prohibited_wording: Multi-agent specialization is generally superior.
+
+  - claim_id: phase4j-system-monolithic
+    section: results.phase4j-system-metrics
+    description: Monolithic-agent metrics across the 18 matched cells.
+    value: {mean_routing_regret: 4.084, invalid_selection_rate: 0.278, harmful_nonabstention_rate: 0.056, final_claim_validity_rate: 0.722, abstentions: 9, completed: 17, failed: 1, dispatched_calls: 34}
+    units: rates, mean loss difference, and counts
+    denominator: 18 retained cells
+    estimand: per-system fail-closed aggregate
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 2 table, system=monolithic-agent
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: one failed output retained under fail-closed accounting
+    caveats: [The result is model-, prompt-, and benchmark-specific.]
+    permitted_wording: The monolithic baseline had 4.084 mean regret with one retained failure.
+    prohibited_wording: Monolithic prompting is generally unreliable.
+
+  - claim_id: phase4j-system-static-deterministic
+    section: results.phase4j-system-metrics
+    description: Static deterministic router metrics across the 18 matched cells.
+    value: {mean_routing_regret: 4.890, invalid_selection_rate: 0.222, harmful_nonabstention_rate: 0.222, final_claim_validity_rate: 0.778, abstentions: 9, completed: 18, failed: 0}
+    units: rates, mean loss difference, and counts
+    denominator: 18 cells
+    estimand: per-system fail-closed aggregate
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 2 table, system=static-deterministic-router
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: no failures
+    caveats: [The static router cannot request diagnostics omitted from initial evidence.]
+    permitted_wording: Static routing had 4.890 mean regret under the frozen information constraints.
+    prohibited_wording: Deterministic routing as a whole underperforms LLM systems.
+
+  - claim_id: phase4j-system-evidence-constrained
+    section: results.phase4j-system-metrics
+    description: Evidence-constrained Phase 4A system metrics and integration-failure boundary.
+    value: {mean_routing_regret: 20.375, invalid_selection_rate: 1.000, harmful_nonabstention_rate: 0.000, final_claim_validity_rate: 0.000, abstentions: 5, completed: 0, failed: 18, dispatched_calls: 12}
+    units: rates, mean loss difference, and counts
+    denominator: 18 retained cells
+    estimand: fail-closed operational aggregate, not model-reasoning quality
+    evidence_class: directly-supported-but-scientifically-noninterpretable
+    claim_level: implementation-diagnostic
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: sections 2 and 5
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: all 18 integration failures retained with fail-closed penalties
+    caveats:
+      - Failures arose in legacy schema and evidence-snapshot integration.
+      - The regret value must not be interpreted as model reasoning incapacity.
+    permitted_wording: The constrained architecture was not scientifically evaluable because all 18 units failed integration validation.
+    prohibited_wording: Evidence constraints caused the model to reason worse.
+
+  - claim_id: phase4j-paired-unconstrained-vs-static
+    section: results.phase4j-paired-comparisons
+    description: Canonical paired comparisons of unconstrained specialized agents against static routing.
+    value:
+      routing_regret: {mean_difference: -4.208, clustered_se: 5.569, ci95: [-15.124, 6.707]}
+      invalid_selection: {mean_difference: -0.167, clustered_se: 0.278, ci95: [-0.711, 0.378]}
+      harmful_nonabstention: {mean_difference: -0.222, clustered_se: 0.222, ci95: [-0.658, 0.213]}
+    units: paired rate or regret differences
+    denominator: 18 matched cells; K=2 scenario clusters
+    estimand: unconstrained-specialized-agents minus static-deterministic-router
+    evidence_class: directly-supported-scenario-clustered-descriptive
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 6.1 rows 1-3
+    derivation_script: src/eri/benchmark/phase4b_evaluation.py::paired_comparisons
+    failure_treatment: retained fail-closed system outputs
+    caveats:
+      - All three clustered intervals cross zero.
+      - K=2 makes uncertainty unstable.
+    permitted_wording: Unconstrained specialized agents had lower descriptive mean regret than static routing, but the clustered interval crossed zero.
+    prohibited_wording: Specialized agents significantly outperform static routing.
+
+  - claim_id: phase4j-paired-monolithic-vs-static
+    section: results.phase4j-paired-comparisons
+    description: Canonical paired comparisons of the monolithic agent against static routing.
+    value:
+      routing_regret: {mean_difference: -0.806, clustered_se: 4.305, ci95: [-9.244, 7.632]}
+      invalid_selection: {mean_difference: 0.056, clustered_se: 0.278, ci95: [-0.489, 0.600]}
+    units: paired rate or regret differences
+    denominator: 18 matched cells; K=2 scenario clusters
+    estimand: monolithic-agent minus static-deterministic-router
+    evidence_class: directly-supported-scenario-clustered-descriptive
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 6.1 rows 4-5
+    derivation_script: src/eri/benchmark/phase4b_evaluation.py::paired_comparisons
+    failure_treatment: one monolithic failure retained
+    caveats: [Both clustered intervals cross zero; K=2.]
+    permitted_wording: The monolithic-static differences were descriptively estimated but highly uncertain.
+    prohibited_wording: Monolithic prompting outperforms static routing.
+
+  - claim_id: phase4j-paired-adaptive-vs-static
+    section: results.phase4j-paired-comparisons
+    description: Canonical paired regret comparison of adaptive and static deterministic policies.
+    value: {mean_difference: -4.889, clustered_se: 4.889, ci95: [-14.471, 4.693]}
+    units: paired routing-regret difference
+    denominator: 18 matched cells; K=2 scenario clusters
+    estimand: adaptive-deterministic-policy minus static-deterministic-router
+    evidence_class: directly-supported-scenario-clustered-descriptive
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 6.1 row 6
+    derivation_script: src/eri/benchmark/phase4b_evaluation.py::paired_comparisons
+    failure_treatment: no failures in either deterministic policy
+    caveats:
+      - The interval crosses zero.
+      - The advantage was concentrated in structural-break cells.
+    permitted_wording: Adaptive deterministic routing was the strongest deployable baseline descriptively, with gains concentrated in structural-break cells.
+    prohibited_wording: Adaptive routing is significantly or universally superior.
+
+  - claim_id: phase4j-adaptive-concentration
+    section: results.deterministic-baseline
+    description: Adaptive routing's observed advantage over static routing was concentrated in structural-break cells.
+    value:
+      adaptive_overall_mean_regret: 0.001297193836243632
+      adaptive_overall_mean_regret_display: 0.0013
+      static_overall_mean_regret: 4.890
+      structural_static_mean_regret: 9.778
+      garch_static_mean_regret: 0.003
+      garch_adaptive_mean_regret: 0.003
+      high_loss_structural_cells: 4
+    units: mean routing regret and cell count
+    denominator: 18 cells overall; 9 cells per scenario
+    estimand: scenario-specific adaptive-versus-static descriptive difference
+    evidence_class: directly-supported-repository-canonical-analysis
+    claim_level: pilot-descriptive
+    canonical_source: docs/phase5-scientific-analysis.md
+    source_sha256: 3ad501f64f7309b749441d65904af00d83711b56bfbd8873f9625ceb08144154
+    source_field_or_row: section 3.2
+    derivation_script: external-artifact://phase4j/live-execution-implementation.py
+    failure_treatment: no failures
+    caveats: [The adaptive policy directly encodes benchmark-relevant eligibility rules.]
+    permitted_wording: Diagnostic acquisition prevented high-loss structural-break errors in this benchmark-specific adaptive policy.
+    prohibited_wording: Adaptive routing is a general-purpose learned solution.
+
+  - claim_id: statistical-outcome-definitions
+    section: methods.statistical-definitions
+    description: Deterministic definitions used for routing loss, oracle loss, invalid selection, harmful non-abstention, and claim validity.
+    value:
+      routing_loss: explicit policy-weighted sum of coverage, interval width, invalidity, harm, abstention, failure, and runtime components
+      oracle_loss: minimum eligible-method-or-abstention loss for the matched cell
+      invalid_selection: selected ineligible or target-not-well-defined method, or execution failure
+      harmful_nonabstention: non-abstention when the target is undefined or no eligible method exists
+      final_claim_valid: no execution failure and no invalid primary selection
+      phase4j_routing_regret: routing_loss minus cell oracle loss
+      phase5b_routing_regret: max(0, routing_loss minus cell oracle loss)
+    units: deterministic metric definitions
+    denominator: one matched system-cell or condition-cell outcome
+    estimand: policy-weighted decision quality relative to a cell-specific oracle
+    evidence_class: implementation-grounded
+    claim_level: methodological-definition
+    canonical_source: src/eri/benchmark/phase4b_evaluation.py
+    source_sha256: 38acc8650bec0a8b1bc25cbef114564a6c658c2d6afeaba5d1bb2fc9c34f5474
+    source_field_or_row: score_output lines 60-158; paired_comparisons lines 238-288
+    derivation_script: src/eri/benchmark/losses.py::score_execution and external-artifact://phase4j/live-execution-implementation.py::_evaluate
+    failure_treatment: execution failure is invalid and enters the explicit failure-loss component
+    caveats:
+      - Loss-profile weights are policy choices.
+      - Phase 5B preregistration adds the nonnegative maximum around regret.
+    permitted_wording: Decision quality is scored by explicit policy-weighted loss and excess loss relative to a matched cell oracle.
+    prohibited_wording: The loss or oracle is a provider-independent natural quantity.
+
+  - claim_id: phase5b-frozen-design-and-provider
+    section: methods.phase5b-design
+    description: Frozen Phase 5B condition and provider configuration.
+    value:
+      provider: alibaba
+      model: qwen3.7-max
+      region: singapore
+      temperature: 0.0
+      matched_cells: 18
+      conditions: 4
+      intended_units: 72
+      planned_dispatches: 216
+      condition_calls: {A: 2, B: 2, C: 4, D: 4}
+      condition_output_token_capacity: 8192
+    units: configuration values and counts
+    denominator: one frozen Phase 5B V2 experiment
+    estimand: prompt-decomposition ablation design
+    evidence_class: recovered-original-freeze
+    claim_level: implementation-grounded
+    canonical_source: external-artifact://phase5b-v2/provenance/phase5b-prompt-decomposition-ablation-v2.freeze.json
+    source_sha256: b5cae3d5d0f334ee099cbd5875a3752854c184ab09f5f30ef18317cda142f1dc
+    source_field_or_row: provider; model; region; temperature; conditions; dispatches
+    derivation_script: null
+    failure_treatment: fail-closed retained denominator N=18 per condition
+    caveats:
+      - The 216 calls are planned, not observed.
+      - Results apply to one provider/model and two scenario families.
+    permitted_wording: Phase 5B compared four matched prompt/workflow conditions across 18 cells on Alibaba qwen3.7-max.
+    prohibited_wording: Phase 5B is a cross-provider or population-representative experiment.
+
+  - claim_id: phase5b-condition-a
+    section: results.phase5b-condition-metrics
+    description: Canonical Phase 5B Condition A (M-short-2) metrics.
+    value: {mean_regret: 4.723122, median_regret: 0.002880, invalid_selection: 0.388889, harmful_nonabstention: 0.166667, claim_validity: 0.611111, abstention: 0.333333, failure: 0.055556, completed: 17, failed: 1}
+    units: rates, regret, and counts
+    denominator: 18 retained condition-cell units
+    estimand: fail-closed Condition A aggregate under Interpretation P
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/condition_metrics.json
+    source_sha256: 652fbc54a4eeb591ccff7d069f22707a87eb8b8b0c4d4b5297a7d47ccb1867be
+    source_field_or_row: conditions[condition_label=A]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: failed loss 1.0 minus oracle loss 0.0 gives regret 1.0
+    caveats: [One provider-schema failure is explicitly reconstructed.]
+    permitted_wording: Short monolithic prompting had 4.723 mean regret in the 18-cell ablation.
+    prohibited_wording: Condition A estimates general monolithic-model quality.
+
+  - claim_id: phase5b-condition-b
+    section: results.phase5b-condition-metrics
+    description: Canonical Phase 5B Condition B (M-unified-2) metrics.
+    value: {mean_regret: 1.389345, median_regret: 0.000000, invalid_selection: 0.111111, harmful_nonabstention: 0.111111, claim_validity: 0.888889, abstention: 0.611111, failure: 0.055556, completed: 17, failed: 1}
+    units: rates, regret, and counts
+    denominator: 18 retained condition-cell units
+    estimand: fail-closed Condition B aggregate under Interpretation P
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/condition_metrics.json
+    source_sha256: 652fbc54a4eeb591ccff7d069f22707a87eb8b8b0c4d4b5297a7d47ccb1867be
+    source_field_or_row: conditions[condition_label=B]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: failed loss 1.0 minus oracle loss 0.246805 gives regret 0.753195
+    caveats:
+      - One provider-schema failure is explicitly reconstructed.
+      - Historical mean 1.403057 is sensitivity-only.
+    permitted_wording: Under the preregistered failure rule, Condition B had 1.389 mean regret.
+    prohibited_wording: Condition B mean regret was 1.403057 in the canonical analysis.
+
+  - claim_id: phase5b-condition-c
+    section: results.phase5b-condition-metrics
+    description: Canonical Phase 5B Condition C (M-unified-4) metrics.
+    value: {mean_regret: 0.250287, median_regret: 0.000000, invalid_selection: 0.000000, harmful_nonabstention: 0.000000, claim_validity: 1.000000, abstention: 0.833333, failure: 0.000000, completed: 18, failed: 0}
+    units: rates, regret, and counts
+    denominator: 18 retained condition-cell units
+    estimand: fail-closed Condition C aggregate under Interpretation P
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/condition_metrics.json
+    source_sha256: 652fbc54a4eeb591ccff7d069f22707a87eb8b8b0c4d4b5297a7d47ccb1867be
+    source_field_or_row: conditions[condition_label=C]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: no failures
+    caveats:
+      - The low mean is not uniform; the primary C-B contrast is concentrated and sensitivity-dependent.
+    permitted_wording: Condition C had the lowest observed mean regret, zero invalid selection and harmful non-abstention, and full claim validity in this pilot.
+    prohibited_wording: Condition C broadly or uniformly outperforms Condition B.
+
+  - claim_id: phase5b-condition-d
+    section: results.phase5b-condition-metrics
+    description: Canonical Phase 5B Condition D (Specialized-4) metrics.
+    value: {mean_regret: 3.598322, median_regret: 0.001440, invalid_selection: 0.222222, harmful_nonabstention: 0.111111, claim_validity: 0.777778, abstention: 0.444444, failure: 0.000000, completed: 18, failed: 0}
+    units: rates, regret, and counts
+    denominator: 18 retained condition-cell units
+    estimand: fail-closed Condition D aggregate under Interpretation P
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/condition_metrics.json
+    source_sha256: 652fbc54a4eeb591ccff7d069f22707a87eb8b8b0c4d4b5297a7d47ccb1867be
+    source_field_or_row: conditions[condition_label=D]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: no failures
+    caveats: [D differs from C in more than persona labels, including interfaces and prompt scoping.]
+    permitted_wording: The tested specialized architecture had higher mean regret than unified sequential Condition C.
+    prohibited_wording: Persona specialization or multi-agent systems are generally harmful.
+
+  - claim_id: phase5b-primary-c-minus-b
+    section: results.phase5b-contrasts
+    description: Canonical primary C minus B routing-regret contrast.
+    value:
+      all_cell_mean: -1.139058
+      completed_pair_mean: -1.206062
+      completed_pairs: 17
+      all_cell_pairs: 18
+      median: 0.000000
+      ci95: [-2.444444, 0.166328]
+      largest_absolute_cell_share: 0.881
+      trimmed_mean: 0.088056
+      garch_mean: 0.166328
+      structural_break_mean: -2.444444
+      diagnostic_subset_mean: 0.000000
+    units: paired routing-regret difference and proportion
+    denominator: 18 fail-closed pairs; 17 completed pairs; K=2 scenario clusters
+    estimand: Condition C minus Condition B
+    evidence_class: canonical-deterministic-recomputation-with-sensitivity
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/paired_contrasts.json
+    source_sha256: 5deca1db6a22a4bee4309e227e85875a0c9a304f05713fb67254beeaedbfda1a
+    source_field_or_row: contrasts[contrast=C-B]; uncertainty_results[contrast=C-B]; sensitivity rows C-B
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: Interpretation P; B failed regret is 1.0 minus its 0.246805 oracle loss
+    caveats:
+      - The clustered interval crosses zero.
+      - The largest cell supplies 88.1 percent of absolute contrast magnitude.
+      - Trimming the largest absolute cell reverses the sign.
+      - Scenario-specific effects have opposite signs.
+    permitted_wording: Condition C had lower overall mean regret than B, but the contrast was concentrated, heterogeneous, and not robust to trimming.
+    prohibited_wording: Sequential execution is definitively dominant, uniformly superior, or conclusively establishes preregistered Case 3.
+
+  - claim_id: phase5b-secondary-b-minus-a
+    section: results.phase5b-contrasts
+    description: Canonical secondary B minus A routing-regret contrast.
+    value: {all_cell_mean: -3.333777, completed_pair_mean: -3.735074, completed_pairs: 16, all_cell_pairs: 18, ci95: [-4.111998, -2.555556]}
+    units: paired routing-regret difference
+    denominator: 18 fail-closed pairs; 16 completed pairs; K=2 scenario clusters
+    estimand: Condition B minus Condition A
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/paired_contrasts.json
+    source_sha256: 5deca1db6a22a4bee4309e227e85875a0c9a304f05713fb67254beeaedbfda1a
+    source_field_or_row: contrasts[contrast=B-A]; uncertainty_results[contrast=B-A]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: Interpretation P for both reconstructed failure units
+    caveats:
+      - K=2 clustered uncertainty remains unstable.
+      - This is a prompt-instruction comparison on one model and benchmark.
+    permitted_wording: Richer unified instructions substantially reduced mean regret relative to the short monolithic prompt in this pilot.
+    prohibited_wording: Richer instructions improve every model or task.
+
+  - claim_id: phase5b-secondary-d-minus-c
+    section: results.phase5b-contrasts
+    description: Canonical secondary D minus C routing-regret contrast.
+    value: {all_cell_mean: 3.348035, completed_pair_mean: 3.348035, completed_pairs: 18, all_cell_pairs: 18, ci95: [1.807181, 4.888889]}
+    units: paired routing-regret difference
+    denominator: 18 completed pairs; K=2 scenario clusters
+    estimand: Condition D minus Condition C
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/paired_contrasts.json
+    source_sha256: 5deca1db6a22a4bee4309e227e85875a0c9a304f05713fb67254beeaedbfda1a
+    source_field_or_row: contrasts[contrast=D-C]; uncertainty_results[contrast=D-C]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: no failures in C or D
+    caveats:
+      - C-D does not isolate a pure persona effect.
+      - K=2 cannot establish population significance.
+    permitted_wording: The tested specialized workflow D performed worse than unified sequential C on this benchmark.
+    prohibited_wording: Persona specialization is generally harmful or Case 4 is universally disconfirmed.
+
+  - claim_id: phase5b-secondary-d-minus-a
+    section: results.phase5b-contrasts
+    description: Canonical secondary D minus A routing-regret contrast.
+    value: {all_cell_mean: -1.124800, completed_pair_mean: -2.426259, completed_pairs: 17, all_cell_pairs: 18, ci95: [-2.138489, -0.111111]}
+    units: paired routing-regret difference
+    denominator: 18 fail-closed pairs; 17 completed pairs; K=2 scenario clusters
+    estimand: Condition D minus Condition A
+    evidence_class: canonical-deterministic-recomputation
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/paired_contrasts.json
+    source_sha256: 5deca1db6a22a4bee4309e227e85875a0c9a304f05713fb67254beeaedbfda1a
+    source_field_or_row: contrasts[contrast=D-A]; uncertainty_results[contrast=D-A]
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: Interpretation P for the A reconstructed failure
+    caveats:
+      - The non-diagnostic-subset mean is exactly zero.
+      - D and A differ in several bundled architectural features.
+    permitted_wording: D had lower overall mean regret than A, with substantial subset heterogeneity.
+    prohibited_wording: Specialized prompting uniformly outperforms short monolithic prompting.
+
+  - claim_id: phase5b-failure-reconstruction
+    section: results.phase5b-failure-accounting
+    description: Two absent condition-cell outcomes were explicitly reconstructed from execution evidence.
+    value:
+      reconstructed_records: 2
+      condition_a:
+        cell_id: structural-mean-break:41100003:open-world-provenance:provenance-conflicting
+        assigned_loss: 1.0
+        oracle_loss: 0.0
+        canonical_regret: 1.0
+      condition_b:
+        cell_id: garch-persistent:41100001:open-world-provenance:provenance-explicit
+        assigned_loss: 1.0
+        oracle_loss: 0.246805
+        canonical_regret: 0.753195
+    units: records and routing loss/regret
+    denominator: 72 intended Phase 5B condition-cell units
+    estimand: fail-closed denominator reconstruction
+    evidence_class: canonical-deterministic-reconstruction
+    claim_level: pilot-descriptive
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/failure_reconstruction.json
+    source_sha256: 462a091be9e2f1b4582fcd547868bf2303f0e1708f3bab0f7e0534f85bf04fed
+    source_field_or_row: failure_reconstruction.records
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: assigned loss 1.0; canonical regret subtracts cell oracle
+    caveats:
+      - No selected method is imputed.
+      - Harmful and abstention flags follow the contemporaneous transcript reconstruction and are not directly observed model decisions.
+    permitted_wording: Two provider-schema failures were explicitly reconstructed to retain the preregistered 72-unit denominator.
+    prohibited_wording: All 72 Phase 5B units completed successfully.
+
+  - claim_id: phase5b-alternative-failure-sensitivity
+    section: results.phase5b-sensitivity
+    description: Directly assigning regret 1.0 to failed units is sensitivity-only.
+    value:
+      condition_b_mean_regret: 1.403057
+      c_minus_b_mean: -1.152770
+      b_minus_a_mean: -3.320066
+    units: mean routing regret or paired regret difference
+    denominator: 18 retained cells per condition or contrast
+    estimand: Interpretation T sensitivity
+    evidence_class: sensitivity-only-retired-from-main-text
+    claim_level: provenance-sensitivity
+    canonical_source: external-artifact://phase5b-v2/analysis/derived/sensitivity_analysis.csv
+    source_sha256: eb07de77da80efd495567c40344ceee14e385232b53c6974475c06158ff902f4
+    source_field_or_row: sensitivity=failure_interpretation_T_direct_regret_one
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: Interpretation T sets failed routing regret directly to 1.0
+    caveats: [Conflicts with the preregistered loss-minus-oracle regret definition.]
+    permitted_wording: Under a noncanonical direct-regret-one sensitivity, the corresponding values are 1.403057, -1.152770, and -3.320066.
+    prohibited_wording: These are canonical Phase 5B main-text estimates.
+
+  - claim_id: phase5b-operational-original-artifacts
+    section: results.phase5b-operational-accounting
+    description: Operational quantities directly backed by recovered original run artifacts.
+    value: {intended_units: 72, completed_units: 70, failed_units: 2, elapsed_seconds: 2396.738865, planned_dispatches: 216}
+    units: counts and seconds
+    denominator: one consumed Phase 5B V2 execution
+    estimand: original-artifact execution accounting
+    evidence_class: original-artifact-backed
+    claim_level: operational
+    canonical_source: external-artifact://phase5b-v2/v2-live-pilot/aggregate_metrics.json
+    source_sha256: d7a65e01c28b2550105c327185e52de85c09b3a5d30a6992d5f71cf32686e68d
+    source_field_or_row: intended_units; completed_units; failed_units; elapsed_seconds; total_physical_dispatches
+    derivation_script: null
+    failure_treatment: two failures counted in the intended denominator
+    caveats:
+      - The historical field total_physical_dispatches records the planned count, not observed dispatches.
+    permitted_wording: The run retained 70 completed and two failed units over 2,396.74 seconds; 216 calls were planned.
+    prohibited_wording: All 216 planned calls were physically dispatched.
+
+  - claim_id: phase5b-operational-transcript-only
+    section: results.phase5b-operational-accounting
+    description: Operational quantities recoverable only from the execution transcript.
+    value: {attempted_calls: 214, responses: 212, input_tokens: 488640, output_tokens: 71820, estimated_cost_usd: 0.2816}
+    units: calls, tokens, and estimated US dollars
+    denominator: one consumed Phase 5B V2 execution
+    estimand: transcript-reported operational accounting
+    evidence_class: transcript-backed-only
+    claim_level: operational-unverified
+    canonical_source: external-artifact://phase5b-v2/provenance/transcript_full.jsonl
+    source_sha256: 2d5a05eb63e8576725f71369c38c42f595b29bc9cb23043a9a6255cb37bc8784
+    source_field_or_row: post-run accounting narrative and handoff summary
+    derivation_script: null
+    failure_treatment: not applicable
+    caveats:
+      - No canonical raw request/response ledger survived in the recovered run directory.
+      - Token totals and cost are not independently verified by original run artifacts.
+    permitted_wording: The transcript reports 214 attempts and 212 responses; token and cost figures are transcript-backed only.
+    prohibited_wording: Exact token usage or cost was verified from original run artifacts.
+
+  - claim_id: phase5b-implementation-provenance
+    section: methods.implementation-provenance
+    description: The freeze contains an invalid implementation identifier, while source hashes match a valid Git commit.
+    value:
+      recorded_invalid_identifier: 3bbc07062fa9cf4fe08ed5713dd2f7ea06edae8b
+      actual_matching_commit: 3bbc070df3a43439464d75f3b662285ab6146c88
+      frozen_source_hashes_matched: 4
+    units: identifiers and source-file count
+    denominator: four freeze-bound runtime source files
+    estimand: implementation provenance identity
+    evidence_class: recovery-manifest-verified
+    claim_level: implementation-grounded
+    canonical_source: external-artifact://phase5b-v2/recovery_manifest.json
+    source_sha256: 8dfa304850abeb5d9fd52262ec946ec3a6d0db93895b37930bc84cadf3475c49
+    source_field_or_row: freeze.recorded_implementation_identifier; freeze.actual_matching_git_commit; freeze.identifier_discrepancy
+    derivation_script: null
+    failure_treatment: not applicable
+    caveats:
+      - Historical freeze and authorization files remain unchanged.
+      - Preservation establishes integrity from recovery time, not execution-time integrity.
+    permitted_wording: The freeze contains an implementation-identifier recording error; all frozen source hashes match commit 3bbc070df....
+    prohibited_wording: The invalid recorded identifier is a valid Git commit, or the historical freeze was corrected in place.
+
+  - claim_id: statistical-definition-routing-regret
+    section: methods.statistical-definitions
+    description: Routing regret is system loss minus cell-specific oracle loss, lower bounded at zero in Phase 5B.
+    value: max(0, routing_loss - oracle_loss)
+    units: policy-weighted loss
+    denominator: one system-cell or condition-cell outcome
+    estimand: excess loss relative to the eligible cell oracle
+    evidence_class: preregistered-and-implementation-grounded
+    claim_level: methodological-definition
+    canonical_source: external-artifact://phase5b-v2/provenance/phase5b-preregistered-analysis-plan.md
+    source_sha256: c563dacd49600d89c9ca1a4d466cddf32f53ad93e3474bfa6f72710eaac6a511
+    source_field_or_row: lines 75-80 and 95-98
+    derivation_script: external-artifact://phase5b-v2/analysis/recompute_phase5b_v2.py
+    failure_treatment: failed loss is 1.0 before subtracting oracle loss
+    caveats: [Routing loss weights are explicit policy choices, not natural constants.]
+    permitted_wording: Routing regret measures excess policy-weighted loss relative to the cell oracle.
+    prohibited_wording: Routing regret is a provider-independent physical quantity.
+
+interpretive_claims:
+  directly_supported:
+    - Richer instructions substantially improve B relative to A on this benchmark.
+    - C has the lowest observed mean regret, zero invalid selection, zero harmful non-abstention, and full claim validity.
+    - The tested specialized-persona workflow D performs worse than C.
+    - The adaptive deterministic policy is the strongest deployable Phase 4J baseline by observed mean regret under the formalized benchmark conditions.
+  pilot_descriptive_interpretation:
+    - Instruction design appears to explain a substantial portion of the improvement over short monolithic prompting.
+    - Unified sequential execution may prevent severe structural-break errors.
+    - The tested specialized architecture is less robust than the unified sequential workflow on this benchmark.
+  mechanistic_hypotheses_not_findings:
+    - C may help by externally preserving intermediate state.
+    - D may suffer from context fragmentation or interface boundaries.
+    - Structured workflows may primarily improve tail-error prevention rather than ordinary-cell performance.
+  unsupported:
+    - Sequential execution is definitively the dominant mechanism.
+    - C broadly and uniformly outperforms B.
+    - Persona specialization is generally harmful.
+    - Multi-agent systems are generally inferior.
+    - C-D isolates a pure persona effect.
+    - Phase 5B provides population-level significance.
+    - All 216 planned calls were physically dispatched.
+    - Exact token and cost numbers are original-artifact verified.
+
+retired_main_text_values:
+  - value: 1.403057
+    quantity: Phase 5B Condition B mean routing regret
+    replacement: 1.389345
+    disposition: sensitivity-only
+  - value: -1.152770
+    quantity: Phase 5B C-minus-B mean paired regret
+    replacement: -1.139058
+    disposition: sensitivity-only
+  - value: -3.320066
+    quantity: Phase 5B B-minus-A mean paired regret
+    replacement: -3.333777
+    disposition: sensitivity-only
+
+prohibited_central_claims:
+  - Sequential execution is definitively the dominant mechanism.
+  - Condition C broadly and uniformly outperforms Condition B.
+  - Preregistered Case 3 is conclusively established.
+  - Preregistered Case 4 is universally disconfirmed.
+  - Persona specialization is generally harmful.
+  - Multi-agent systems are generally inferior.
+  - Condition C minus D isolates a pure persona effect.
+  - Phase 5B establishes population-level significance.
+  - All 216 planned Phase 5B calls were physically dispatched.
+  - Phase 5B token totals and provider cost are original-artifact verified.

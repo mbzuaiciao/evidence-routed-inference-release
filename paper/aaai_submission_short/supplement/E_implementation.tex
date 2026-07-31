@@ -1,0 +1,46 @@
+\section{Complete Phase 5B Implementation Details}
+\label{supp:implementation}
+
+\subsection{Conditions and budgets}
+
+Phase~5B is a matched ablation over the same 18 cells.
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}clllrr@{}}
+\toprule
+ & Implementation & Workflow & Instructions & Calls & Max/call \\
+\midrule
+A & M-short-2 & monolithic & concise & 2 & 4096 \\
+B & M-unified-2 & unified & enriched & 2 & 4096 \\
+C & M-unified-4 & unified staged & same as B & 4 & 2048 \\
+D & Specialized-4 & four roles & role-specific & 4 & 2048 \\
+\bottomrule
+\end{tabular}
+\caption{Frozen Phase~5B conditions and nominal output budgets.}
+\end{table*}
+Every condition has nominal output capacity 8,192 tokens.  B and C use the
+same substantive four-role instruction content.  B uses one persona and two
+calls; C uses one continuing workflow and four sequential calls.  D uses
+specialized planner, provenance, reviewer, and reporter prompts and differs
+from C in message/context partitioning and intermediate interfaces.
+
+The preregistered primary contrast \(C-B\) changes the number and organization
+of calls while holding substantive instructions and nominal output capacity
+fixed.  Secondary contrast \(B-A\) tests instruction enrichment under
+two-call implementations.  \(D-C\) is a residual architectural comparison
+bundling role scope, context, interfaces, and message flow.  The study is a
+controlled component ablation, not a complete factorial causal decomposition.
+
+\subsection{Accounting and analysis}
+
+The design contains 72 intended units and 216 planned calls:
+\(18(2+2+4+4)\).  The scheduler rotates condition order by cell.  Provider
+retries and schema repairs are zero.  Planned calls are not treated as
+observed dispatches.
+
+Point estimates are paired all-cell mean regret differences.  Supporting
+analyses use completed pairs, scenario-cluster bootstrap intervals,
+scenario-family and seed subsets, the prespecified diagnostic subset, and
+leave-one-extreme-cell trimming.  With only \(K=2\) scenario clusters, all
+claims remain pilot-descriptive; intervals are not population-level
+significance tests \citep{MacKinnonWebb2018}.

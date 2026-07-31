@@ -1,0 +1,173 @@
+\section{Discussion, Limitations, and Conclusion}
+\label{sec:discussion}
+
+Instruction quality is the most stable explanatory component in this pilot.
+The \(B-A\) comparison changes instructions while retaining the two-call,
+single-persona structure, and its direction persists across scenario families
+and trimming.  Claims about structured reasoning should therefore compare
+against instruction-matched baselines rather than crediting an architectural
+label for gains caused by task specification.
+
+This point extends beyond prompt engineering as an implementation detail.
+Instructions determine which assumptions must be checked, how missing evidence
+is treated, and whether a system recognizes abstention as a scientifically
+valid outcome.  In a validity-sensitive task, omissions in the task contract
+can surface as methodological errors rather than merely stylistic differences.
+Evaluations should therefore treat instruction content as an explicit
+experimental factor.
+
+Staging may still matter by preventing rare, high-cost errors.  C achieves
+the best aggregate outcome, yet most of its incremental advantage over B
+comes from one structural-break cell; trimming reverses the sign and the two
+families disagree.  This supports a hypothesis about tail-error prevention,
+not a broad average-case benefit from additional calls.  Failure-sensitive
+evaluation is essential because near-zero medians can coexist with sharply
+different means.
+
+The pattern suggests a distinction between average-case refinement and
+tail-risk control.  Additional stages may contribute little on cells where the
+eligible action is obvious yet still matter when a review stage catches an
+expensive invalid continuation.  The present data support that hypothesis only
+as a mechanism for future study: one influential cell cannot establish a
+general tail-protection effect, and the scenario families disagree on the
+average \(C-B\) direction.
+
+The \(D-C\) comparison is likewise bounded.  The tested specialized workflow
+underperforms unified staging, but it changes persona scope, intermediate
+interfaces, message flow, and context.  Specialized agents may remain useful
+when roles possess genuinely different tools, information, objectives, or
+verification duties.  Our result characterizes two workflow bundles and
+cannot establish a general single-agent advantage.
+
+Specialization may be valuable when roles possess genuinely different tools,
+information, incentives, or verification duties
+\citep{HongEtAl2024MetaGPT}.  Those conditions are largely absent here: every
+stage addresses the same statistical task with the same model family and
+underlying evidence environment.  Adding boundaries in this setting may add
+coordination and interface costs without adding useful diversity.  A future
+factorial design would need to vary personas, context partitioning, and
+intermediate schemas separately before attributing the observed difference.
+
+These findings also clarify what ERI contributes.  Typed evidence and
+fail-closed routing make invalid decisions and abstentions measurable, but
+neither is claimed as novel.  The empirical contribution is the ordering of
+comparisons: instruction content is varied before call organization, and the
+specialized workflow is evaluated only after an instruction-matched unified
+staged condition.  This sequence narrows attribution without pretending to
+recover independent causal effects for every workflow feature.
+
+It also motivates reporting practices for structured scientific systems.
+Aggregate accuracy alone cannot distinguish an unnecessary abstention from an
+invalid inferential claim, and mean loss alone can conceal concentration.
+Complete denominators, component outcomes, paired cell differences, and
+prespecified sensitivity analyses reveal whether a workflow improves ordinary
+cases, prevents rare severe errors, or simply changes its failure mode.
+
+\paragraph{Design implications.}
+The results suggest a practical ordering for scientific-AI development.
+Begin with a precise task contract and an instruction-matched baseline before
+adding calls or roles.  When additional stages are introduced, preserve
+component-level outcomes so that a gain can be attributed to corrected
+evidence handling, eligibility assessment, or final routing.  Add specialized
+roles only when the task supplies genuine heterogeneity---different tools,
+information, objectives, or verification responsibilities---rather than
+assuming that persona labels alone create useful diversity.
+
+Evaluation should also distinguish uniform improvement from prevention of
+rare catastrophic errors.  Median regret is near zero for several conditions
+even though their means differ sharply.  A system can look reliable on
+ordinary cases while occasionally making an invalid high-loss decision.
+Paired cell traces, scenario-specific summaries, leave-one-extreme
+sensitivities, and explicit failure retention are therefore central to
+interpreting the architecture, not optional robustness checks after a headline
+average has been selected.
+
+The scope is narrow: 18 cells, two synthetic scenario families, three seeds,
+one hosted model and provider, and only two scenario clusters.  Hosted-model
+outputs may vary even under nominally deterministic settings
+\citep{AtilEtAl2025Nondeterminism}.  The loss profile is benchmark-specific,
+the deterministic policy was co-developed with the benchmark, and the
+conditions are not a complete factorial design.  Broader claims require
+replication across models, domains, and less formalizable evidence; additional
+limitations and provenance qualifications are in
+Supplement Section K.  In particular, the two-cluster intervals are not
+conventional uncertainty estimates for a population of tasks, and the
+benchmark-specific loss weights affect the magnitude of routing regret.
+
+The four conditions are also not a complete factorial decomposition.  B and C
+match substantive instructions and nominal output capacity, but differ in
+call count, context accumulation, and persisted intermediate state.  C and D
+differ in persona specialization together with message partitioning,
+intermediate schemas, and role boundaries.  The study therefore cannot assign
+an independent causal coefficient to staging or persona identity.  It reports
+the cleanest instruction contrast and qualified implementation contrasts for
+the remaining bundles.
+
+The benchmark itself is narrow and highly structured.  It focuses on
+Sharpe-ratio inference under synthetic dependence, heteroskedasticity,
+distributional, stability, and provenance conditions.  Results may differ
+where evidence is unstructured, ontologies are ambiguous, tools are
+heterogeneous, expertise is genuinely distributed, or adversarial interaction
+is part of the task.  The tested specialized workflow's result must not be
+read as evidence that multi-agent systems are generally inferior.
+
+Two additional operational qualifications matter.  All live conditions use
+one hosted model and provider configuration, and hosted services can vary
+under nominally deterministic settings
+\citep{AtilEtAl2025Nondeterminism}.  Two units terminated at provider-schema
+validation and are retained using the preregistered fail-closed convention.
+The recovered evidence package preserves primary outcomes, aggregates,
+authorization, freeze records, and transcripts, but not a complete original
+request/response and token ledger; operational quantities without artifact
+support are therefore excluded from the canonical scientific claims.
+
+The deterministic boundary should be read with the same restraint.  Its
+approximately \(0.0013\) mean regret demonstrates what direct encoding can do
+in a task whose evidence ontology and admissibility rules were built alongside
+the benchmark.  It does not show that deterministic policies can be specified
+reliably in open-ended domains.  LLMs may remain useful when evidence is
+unstructured or the decision ontology is incomplete, even if a formalized
+final boundary is executed deterministically.
+
+The deterministic result also depends on co-development.  Its evidence
+ontology, diagnostic acquisition, priorities, and abstention rules encode
+substantial knowledge aligned with the benchmark.  It is thus an engineered
+reference for what complete formalization can achieve, not evidence that
+similarly reliable rules can be specified in advance for open-ended domains.
+The study does not evaluate autonomous policy synthesis.
+
+Finally, routing regret is a policy-weighted benchmark quantity.  The
+registered loss makes invalid selection and harmful non-abstention expensive
+because those outcomes threaten scientific validity.  Different applications
+may place different costs on delay, abstention, interval width, or invalid
+claims and can therefore change numerical rankings.  Reporting categorical
+validity outcomes alongside regret makes this dependence visible but does not
+eliminate it.
+
+Within these limits, the pilot supports three descriptive findings.  Richer
+instructions produce the clearest and most stable improvement.  Unified
+four-call execution has the strongest aggregate profile, but its advantage over
+instruction-matched two-call execution is concentrated in one severe
+structural-break error and does not persist uniformly across sensitivities.
+The tested specialized workflow does not improve on unified staging, although
+bundled architectural differences prevent attributing that outcome solely to
+role specialization.
+
+The immediate next test is replication rather than architectural escalation:
+additional scenario families, independently constructed admissibility
+policies, multiple models and providers, and tasks with less structured
+evidence.  Such studies can ask whether the stable instruction effect
+persists, whether staging repeatedly prevents tail failures, and when genuine
+role heterogeneity offsets interface costs.  Until then, every conclusion
+remains benchmark-specific and pilot-descriptive.
+
+The broader contribution is methodological.  Workflow comparisons should match
+instruction content, retain failures in the denominator, and report paired
+cell-level outcomes and concentration analyses before attributing gains to
+additional calls or specialized agents.  \ERI{} demonstrates this principle in a
+scientific setting where invalid method selection and harmful non-abstention
+can be distinguished from ordinary answer error.  A workflow that produces more
+answers is not necessarily safer, and a system that abstains is not
+necessarily less capable.  By separating evidence acquisition, admissibility,
+action, and failure accounting, the benchmark makes those distinctions
+observable and auditable.

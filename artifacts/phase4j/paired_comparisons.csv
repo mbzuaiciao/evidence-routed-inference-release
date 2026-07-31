@@ -1,0 +1,16 @@
+available_cells,clustered_lower,clustered_standard_error,clustered_upper,excluded_unmatched_cells,metric,paired_mean_difference,paired_n,reference,scenario_clusters,system,uncertainty_unit
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,invalid_primary_method_selection,-0.2222222222222222,18,static-deterministic-router,2,adaptive-deterministic-policy,matched cell; scenario-clustered descriptive
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,harmful_nonabstention,-0.2222222222222222,18,static-deterministic-router,2,adaptive-deterministic-policy,matched cell; scenario-clustered descriptive
+18,-14.47093503552915,4.888888888888889,4.693157257751372,0,routing_regret,-4.888888888888889,18,static-deterministic-router,2,adaptive-deterministic-policy,matched cell; scenario-clustered descriptive
+18,-0.48887888459445916,0.27777777777777773,0.5999899957055703,0,invalid_primary_method_selection,0.05555555555555555,18,static-deterministic-router,2,monolithic-agent,matched cell; scenario-clustered descriptive
+18,-0.49332733075667556,0.16666666666666666,0.15999399742334222,0,harmful_nonabstention,-0.16666666666666666,18,static-deterministic-router,2,monolithic-agent,matched cell; scenario-clustered descriptive
+18,-9.24405013087868,4.305306330578413,7.632440569813287,0,routing_regret,-0.8058047805326969,18,static-deterministic-router,2,monolithic-agent,matched cell; scenario-clustered descriptive
+18,-0.7111011068166814,0.27777777777777773,0.3777677734833481,0,invalid_primary_method_selection,-0.16666666666666666,18,static-deterministic-router,2,unconstrained-specialized-agents,matched cell; scenario-clustered descriptive
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,harmful_nonabstention,-0.2222222222222222,18,static-deterministic-router,2,unconstrained-specialized-agents,matched cell; scenario-clustered descriptive
+18,-15.124196438051644,5.569395046456344,6.707430975408776,0,routing_regret,-4.208382731321434,18,static-deterministic-router,2,unconstrained-specialized-agents,matched cell; scenario-clustered descriptive
+18,0.342230225657766,0.22222222222222218,1.2133253298977895,0,invalid_primary_method_selection,0.7777777777777778,18,static-deterministic-router,2,evidence-constrained-phase4a-agents,matched cell; scenario-clustered descriptive
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,harmful_nonabstention,-0.2222222222222222,18,static-deterministic-router,2,evidence-constrained-phase4a-agents,matched cell; scenario-clustered descriptive
+18,5.170033457936009,5.262894072746763,25.800199132001957,0,routing_regret,15.485116294968986,18,static-deterministic-router,2,evidence-constrained-phase4a-agents,matched cell; scenario-clustered descriptive
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,invalid_primary_method_selection,-0.2222222222222222,18,static-deterministic-router,2,oracle,matched cell; scenario-clustered descriptive
+18,-0.6577697743422339,0.22222222222222218,0.21332532989778957,0,harmful_nonabstention,-0.2222222222222222,18,static-deterministic-router,2,oracle,matched cell; scenario-clustered descriptive
+18,-14.469689776165389,4.887591695052645,4.689317610715122,0,routing_regret,-4.890186082725132,18,static-deterministic-router,2,oracle,matched cell; scenario-clustered descriptive

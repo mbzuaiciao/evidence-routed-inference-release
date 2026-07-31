@@ -1,0 +1,45 @@
+\section{Failure Reconstruction and Alternate Interpretations}
+\label{supp:failures}
+
+\subsection{Canonical reconstruction}
+
+Two Phase~5B units ended in provider-schema failure.  The Condition~A failure
+occurred in the cell
+\begin{quote}
+\ttfamily
+structural-mean-break:41100003:\\
+provenance-conflicting
+\end{quote}
+It received loss 1, oracle loss 0, and regret 1.  The Condition~B failure
+occurred in the cell
+\begin{quote}
+\ttfamily
+garch-persistent:41100001:\\
+provenance-explicit
+\end{quote}
+It received loss 1, oracle loss 0.246805, and regret 0.753195.
+
+Canonical Interpretation P follows the preregistered rule: assign terminal
+failed loss \(L_i=1\), then calculate
+\(\max(0,L_i-L_i^{\mathrm{oracle}})\).  It does not invent a selected method.
+Invalid-selection and final-claim fields are fail-closed.  Harmful and
+abstention fields reproduce the contemporaneous transcript reconstruction and
+were not directly emitted model decisions.  This treatment retains all 18
+cells per condition.
+
+\subsection{Alternate sensitivity}
+
+As a provenance sensitivity only, noncanonical Interpretation T directly
+assigns regret 1 to each failure.  It would yield Condition~B mean regret
+1.403057, \(C-B=-1.152770\), and \(B-A=-3.320066\).  These are not canonical
+estimates because they do not subtract cell-specific oracle loss after
+assigning failed loss.
+
+\subsection{Evidence classification}
+
+The recovered original aggregate records 70 completed and two failed units
+over 2,396.74 seconds and records 216 planned calls.  Attempt, response, token,
+and cost totals survive only in the execution transcript, not in a recovered
+original request/response ledger.  They are transcript-backed operational
+evidence and are excluded from claims of fully artifact-verified scientific
+results.

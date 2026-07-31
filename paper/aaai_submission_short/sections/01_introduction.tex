@@ -1,0 +1,92 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Scientific inference requires both executing a statistical procedure and
+deciding whether its assumptions are supported.  A numerically correct answer
+can remain scientifically invalid when dependence, instability, or
+distributional shape makes the selected procedure inadmissible; abstention may
+then be preferable to a plausible estimate.  Although language models
+increasingly assist scientific and statistical analysis
+\citep{GuEtAl2024BLADE,LiuEtAl2024QRData}, evaluations more often test
+calculation than \emph{assumption-aware method selection}: connecting observed
+diagnostic evidence to a justified procedure.
+
+Structured workflows are natural candidates for this decision, but their
+comparisons are confounded.  Moving from a concise prompt to an ``agentic''
+system may simultaneously enrich instructions, add calls, preserve
+intermediate state, partition context, and introduce role-specific prompts
+\citep{YaoEtAl2023ReAct,HongEtAl2024MetaGPT}.  An aggregate gain therefore
+does not identify whether instruction quality, staged execution, or role
+specialization caused the difference.
+
+We use \ERI{} as a controlled study setting for Sharpe-ratio method selection.
+ERI maps data to diagnostic evidence, then to method eligibility, and finally
+to a primary procedure or explicit abstention.  The 18 matched cells combine
+two time-series families with three information regimes.  Persistent GARCH
+returns require procedures robust to serial dependence, whereas a structural
+mean break makes the registered full-sample target undefined and requires
+abstention.  This contrast makes validity failures observable even when a
+workflow produces fluent reasoning or a plausible numerical answer.
+
+Sharpe-ratio inference provides a compact but nontrivial test bed because the
+same point estimate admits materially different uncertainty procedures.
+Serial dependence and conditional heteroskedasticity can invalidate IID
+procedures; non-Gaussian shape changes variance approximations without
+removing their IID basis; and temporal instability can invalidate the
+full-sample target itself.  A system must therefore distinguish a weakened
+method from an ineligible one and recognize when no numerical procedure can
+repair an ill-defined target.  The task rewards a defensible evidential chain,
+not merely selection of a sophisticated estimator.
+
+Four frozen
+conditions progress from concise two-call prompting (A), to enriched unified
+two-call instructions (B), to a unified four-call implementation with the same
+substantive instructions (C), and finally to a specialized four-role workflow
+(D).  This sequence gives the cleanest available comparison of instruction
+enrichment (\(B-A\)), a qualified comparison of call organization
+(\(C-B\)), and a residual workflow comparison (\(D-C\)).
+
+Three findings organize the paper.  First, richer instructions produce the
+most stable improvement.  Second, C has the strongest aggregate profile, but
+its advantage over B is concentrated in one severe error and is not robust to
+trimming or scenario family.  Third, D performs worse than C under the tested
+bundles, which does not isolate persona identity or establish that multi-agent
+systems are generally inferior.  As a secondary boundary result, a
+domain-specific deterministic policy performs strongly when the benchmark's
+evidence and admissibility rules are encoded directly.
+
+Our contribution is a component-sensitive evaluation of instruction richness,
+unified multi-call execution, and specialized-role workflow design on a
+validity-sensitive benchmark.  We retain failures in the denominator,
+measure invalid selection, harmful non-abstention, claim validity, and routing
+regret, and report concentration and sensitivity analyses that prevent the
+best aggregate result from being overinterpreted.  Typed evidence, eligibility
+rules, abstention, audit trails, and deterministic routing support this study;
+they are not presented as independent architectural novelties.
+
+This design addresses two common interpretive problems.  First, matching
+cells and nominal condition-level output capacity prevents a four-call
+workflow from being credited simply for receiving a larger output budget.
+Second, complete denominators and fail-closed accounting prevent provider or
+schema failures from disappearing from condition averages.  Cell-level
+contrasts, scenario-family summaries, completed-pair analyses, and trimming
+then reveal whether an aggregate gain is diffuse or concentrated in one
+consequential decision.  More broadly, the study shows that aggregate workflow
+rankings can be misleading unless instruction content is matched, terminal
+failures remain in the denominator, and paired cell-level analyses reveal
+whether gains are diffuse or concentrated in rare high-cost errors.
+
+This framing differs from asking whether one agent category is globally
+better.  The conditions form a sequence of increasingly structured workflow
+bundles, not a complete factorial design.  We identify the cleanest contrast,
+state the extra factors changed by the remaining contrasts, and limit
+conclusions to the frozen pilot.  The analysis therefore centers on
+component-sensitive evaluation and failure modes rather than proposing a new
+agent architecture or execution harness.
+
+The remainder of the paper positions this evaluation problem, defines the
+evidence-routing task and benchmark, describes the frozen A--D sequence,
+reports canonical and sensitivity results, and closes with design
+implications and limitations.  The supplement provides schemas, diagnostic
+definitions, cell registries, failure reconstruction, and reproducibility
+records.

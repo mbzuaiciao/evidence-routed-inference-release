@@ -1,0 +1,50 @@
+\section{Full ERI Evidence Schema and Admissibility Logic}
+\label{supp:evidence}
+
+\subsection{Task separation}
+
+\ERI{} separates executing a statistical procedure from deciding whether that
+procedure is admissible under available evidence.  Given returns, candidate
+procedures, and an information state, the router evaluates method-specific
+requirements and returns either one primary method or an explicit abstention.
+Estimation follows only after this routing decision.
+
+\subsection{Typed evidence}
+
+Each diagnostic produces a typed evidence item containing a stable identifier,
+the evaluated claim, a finding (\emph{supports}, \emph{contradicts}, or
+\emph{inconclusive}), diagnostic version and configuration, numerical output
+when available, and explicit warnings and scope limits.  The identifier is
+derived from a canonical serialization, allowing eligibility and decision
+records to cite the exact evidence used.  Data fingerprints and provenance
+references bind the trace to its inputs.
+
+Eligibility records distinguish an eligible primary method from a weakened or
+sensitivity-only method and retain reasons, missing requirements, and evidence
+references.  The implemented candidates have explicit minimum-sample and
+configuration requirements.  If several non-sensitivity candidates remain, a
+fixed priority order selects one; if none remains, or a fail-closed rule is
+triggered, the workflow abstains.  The mathematical eligibility decision is
+therefore deterministic even when evidence acquisition or interpretation uses
+an LLM.
+
+\subsection{Abstention taxonomy}
+
+Global abstention is required for invalid input, degenerate variance,
+policy-defined material structural instability, or absence of an eligible
+non-sensitivity primary procedure.  Claim-specific abstentions remain
+separate.  For example, multiplicity-adjusted Sharpe claims are blocked
+without complete search provenance and an audited adjustment method.  Support,
+contradiction, and inconclusive evidence statuses remain distinct from method
+eligibility, the selected primary method, global abstention, and
+claim-specific abstention.
+
+\subsection{Canonical records}
+
+Pydantic models reject extra or internally inconsistent evidence,
+eligibility, decision, abstention, and inference fields.  The deterministic
+adjudicator cites evidence IDs, records conflicts and warnings, and enforces
+that a selected method appears in the eligible set.  Failed outputs remain
+typed terminal records rather than being repaired or omitted.  These
+mechanisms are supporting infrastructure and are not claimed as independent
+architectural novelty.

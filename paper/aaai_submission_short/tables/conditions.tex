@@ -1,0 +1,17 @@
+% Evidence: phase5b-frozen-design-and-provider.
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}clllrr@{}}
+\toprule
+ & Implementation & Workflow & Instructions & Calls & Max/call \\
+\midrule
+A & M-short-2 & monolithic & concise & 2 & 4096 \\
+B & M-unified-2 & unified & enriched & 2 & 4096 \\
+C & M-unified-4 & unified staged & same as B & 4 & 2048 \\
+D & Specialized-4 & four roles & role-specific & 4 & 2048 \\
+\bottomrule
+\end{tabular}
+\caption{Frozen conditions.  Each has nominal output capacity 8,192 tokens;
+the implementations are not a complete factorial decomposition.}
+\label{tab:conditions}
+\end{table*}

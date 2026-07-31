@@ -1,0 +1,59 @@
+\section{Diagnostic Definitions and Thresholds}
+\label{supp:diagnostics}
+
+\paragraph{Data quality.}
+Returns must be nonempty, one-dimensional, and finite without imputation.
+Configured sample-size evidence requires at least 30 observations, and
+variance at or below \(10^{-12}\) is rejected.  The diagnostic also reports
+repeated-value concentration and, when timestamps are supplied, missingness,
+duplication, ordering, and spacing irregularity.  Repetition and spacing
+cutoffs are heuristic warnings rather than formal market-data tests.
+
+\paragraph{Linear and squared-return dependence.}
+Separate diagnostics apply the same Ljung--Box construction to returns and to
+squared centered returns.  For \(n\) observations and maximum lag \(h\),
+\[
+Q=n(n+2)\sum_{k=1}^{h}\frac{\widehat\rho_k^2}{n-k}.
+\]
+The lags are \(1,2,5,10\), the asymptotic reference level is 0.05, and
+dependence is also flagged when any absolute autocorrelation reaches 0.15.
+The minimum sample size is 30.  Squared-return dependence is evidence of
+volatility clustering, not identification of a particular volatility model;
+failure to detect dependence does not prove independence.
+
+\paragraph{Distribution shape.}
+The implementation uses uncorrected plug-in skewness
+\(\widehat\gamma_3\), raw Pearson kurtosis \(\widehat\gamma_4\), and
+\[
+JB=\frac{n}{6}\left\{\widehat\gamma_3^2+
+\frac{(\widehat\gamma_4-3)^2}{4}\right\}.
+\]
+Material non-Gaussianity is flagged at absolute skewness 0.75, raw kurtosis
+6.0, or asymptotic \(p<0.05\), with minimum \(n=30\).  A separate
+fourth-moment item is always inconclusive because a finite sample cannot
+establish a finite population fourth moment.
+
+\paragraph{Split-sample stability.}
+At a 50\% split, the diagnostic compares segment means using their estimated
+standard error and compares sample variances by the larger-to-smaller ratio.
+It flags instability when the absolute standardized mean difference is at
+least 3 or the variance ratio is at least 3.  Evaluation requires \(n\geq60\)
+and at least 20 observations per segment.  These are policy thresholds, not a
+calibrated change-point test.
+
+\paragraph{Research provenance.}
+Provenance records trial and parameter-search counts, searched markets and
+windows, failed-trial retention, trial-dependence status, completeness, and a
+reference.  ``Complete'' is accepted only when all required fields are
+present.  Incomplete provenance blocks deflated-Sharpe claims; complete
+provenance does not enable them because the audited adjustment method is not
+implemented.
+
+\paragraph{Visibility and acquisition.}
+Evidence is grouped as returns summary, linear dependence, squared dependence,
+distribution, stability, and structured provenance.  A cell exposes only its
+declared groups.  Budgeted systems may reveal registered groups up to the cell
+budget; the adaptive deterministic policy uses the priority squared
+dependence, stability, linear dependence, then distribution.  Ground-truth
+eligibility labels are generated separately and never exposed as diagnostic
+evidence.

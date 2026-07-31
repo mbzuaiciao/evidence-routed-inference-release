@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "evidence-routed-inference"
+version = "0.1.0"
+description = "Typed foundations for evidence-routed statistical inference"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "matplotlib>=3.9,<4",
+    "numpy>=2,<3",
+    "pydantic>=2.11,<3",
+    "pyyaml>=6,<7",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.403,<2",
+    "pytest>=8.4,<9",
+    "ruff>=0.12,<1",
+    "types-pyyaml>=6,<7",
+]
+
+[tool.uv]
+default-groups = ["dev"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/eri"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "UP"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+include = ["src", "tests", "scripts"]
+venvPath = "."
+venv = ".venv"

@@ -1,0 +1,55 @@
+\section{Full Benchmark Construction and Information Regimes}
+\label{supp:benchmark}
+
+\subsection{Cells and hidden truth}
+
+The task is inference for the unannualized sample Sharpe ratio.  The two
+synthetic families are \texttt{garch-persistent}, with persistent conditional
+heteroskedasticity, and \texttt{structural-mean-break}, for which a stable
+full-sample Sharpe target is not well defined.  Each family uses return seeds
+41100001, 41100002, and 41100003.
+
+A matched cell combines scenario, seed, and information regime, while
+method-eligibility truth remains hidden.  The 18 cells span full information,
+budgeted observation, and open-world provenance.  Full-information cells
+expose all structured diagnostics; budgeted cells hide a dependence or
+stability group that may be acquired within a fixed budget; open-world cells
+expose explicit, conflicting, or instruction-like provenance.  Phase~5B
+reuses the same frozen cells for all four conditions.
+
+Under persistent GARCH dynamics, IID Gaussian and Mertens/PSR procedures are
+ineligible, while HAC and circular-block bootstrap are eligible when the
+registered finite-fourth-moment condition holds.  Under a structural mean
+break, all four full-sample methods are target-not-well-defined and abstention
+is the eligible action.
+
+\subsection{Oracle and loss}
+
+For observed action \(i\), the benchmark computes policy-weighted loss
+\[
+L_i=\sum_j w_j\ell_{ij},
+\]
+whose components cover interval calibration and width, invalid selection,
+harmful non-abstention, unnecessary abstention, execution failure, abstention,
+and runtime.  The weights are declared policy choices, not natural constants.
+The evaluator-only oracle uses hidden eligibility labels and disjoint
+simulation draws to select the minimum expected-loss eligible action, breaking
+ties by fixed registry order.
+
+Phase~5B routing regret is
+\[
+\RoutingRegret_i=\max\{0,L_i-L_i^{\mathrm{oracle}}\}.
+\]
+Regret is excess loss relative to the matched-cell oracle, not raw loss.  An
+invalid primary selection chooses an ineligible method, chooses a method when
+the target is undefined, or fails execution.  Harmful non-abstention means
+proceeding when the target is undefined or no method is eligible.  A final
+claim is valid only when execution succeeds and the primary selection is
+valid.
+
+\subsection{Retained denominators}
+
+All intended outputs remain in the denominator.  Phase~4J retained 108 outputs
+from 18 cells and six systems, including terminal failures.  Phase~5B retained
+all 72 condition--cell units and reconstructed two provider-schema failures
+under the preregistered fail-closed rule without imputing a selected method.

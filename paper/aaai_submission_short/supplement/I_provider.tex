@@ -1,0 +1,37 @@
+\section{Provider Configuration and Execution Accounting}
+\label{supp:provider}
+
+\paragraph{Provider policy.}
+Phase~4J used Alibaba \texttt{qwen3.7-max} in the pinned Singapore workspace,
+with thinking disabled, temperature unset, a 90-second timeout, 4,096 maximum
+output tokens, zero retries, and no schema repair.  The provider required
+usage metadata, allowed no mock fallback, and executed at concurrency one.
+Phase~5B used the same provider/model and region; its frozen record specifies
+temperature 0.0.  Hosted services can remain nondeterministic under settings
+intended to be deterministic \citep{AtilEtAl2025Nondeterminism}.
+
+\paragraph{Ablation budgets.}
+A and B allow 4,096 output tokens for each of two calls; C and D allow 2,048
+for each of four calls.  Nominal condition-level capacity is therefore 8,192
+tokens throughout.  The frozen scheduler rotates condition order by cell and
+records 216 planned calls.  Retries and repairs are zero.
+
+\paragraph{Original-artifact-backed accounting.}
+The recovered aggregate and sentinel support 72 intended units, 70 completed
+units, two failed units, elapsed time 2,396.74 seconds, and 216 planned calls.
+The historical field named total physical dispatches records the plan and is
+not evidence that all 216 requests were sent.
+
+\paragraph{Transcript-backed accounting.}
+The execution transcript reports 214 attempted calls, 212 responses, 488,640
+input tokens, 71,820 output tokens, and estimated cost \$0.2816.  Because the
+raw request/response ledger did not survive in the recovered run directory,
+these quantities remain transcript-backed and are not canonical scientific
+evidence.
+
+\paragraph{Authorization lifecycle.}
+Both live experiments were bound to a freeze, provider/model policy,
+confirmation phrase, sentinel, and one-execution maximum before execution.
+The retained Phase~5B authorization has status
+\texttt{consumed-live-execution-completed}.  Authorization records carry no
+API key.

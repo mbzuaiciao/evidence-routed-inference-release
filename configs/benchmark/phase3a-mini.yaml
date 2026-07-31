@@ -1,0 +1,57 @@
+benchmark_version: phase3a-0.1
+run_label: mini
+output_root: runs/phase3a
+confidence_level: 0.95
+hac_bandwidth: 5
+bootstrap_block_length: 10
+bootstrap_replications: 100
+bootstrap_seed: 8000
+loss_profile: validity-first
+oracle_training_seeds: [1101, 1102, 1103, 1104, 1105, 1106, 1107, 1108]
+evaluation_seeds: [2101, 2102, 2103, 2104, 2105, 2106, 2107, 2108]
+generate_figures: true
+scenarios:
+  - scenario_id: iid-gaussian-n120
+    family: iid-gaussian
+    sample_size: 120
+    parameters: {mean: 0.01, volatility: 0.10}
+  - scenario_id: iid-gaussian-n300
+    family: iid-gaussian
+    sample_size: 300
+    parameters: {mean: 0.01, volatility: 0.10}
+  - scenario_id: ar1-moderate
+    family: ar1
+    sample_size: 180
+    parameters: {mean: 0.01, phi: 0.25, innovation_std: 0.09, burn_in: 250}
+  - scenario_id: ar1-strong
+    family: ar1
+    sample_size: 360
+    parameters: {mean: 0.01, phi: 0.55, innovation_std: 0.08, burn_in: 300}
+  - scenario_id: garch-moderate
+    family: garch
+    sample_size: 240
+    parameters: {mean: 0.006, omega: 0.0003, alpha: 0.10, beta: 0.75, burn_in: 400}
+  - scenario_id: garch-persistent
+    family: garch
+    sample_size: 360
+    parameters: {mean: 0.006, omega: 0.0001, alpha: 0.12, beta: 0.84, burn_in: 500}
+  - scenario_id: structural-mean-break
+    family: structural-break
+    sample_size: 240
+    parameters:
+      variant: mean
+      break_fraction: 0.50
+      mean_1: -0.03
+      mean_2: 0.05
+      volatility_1: 0.10
+      volatility_2: 0.10
+  - scenario_id: structural-variance-break
+    family: structural-break
+    sample_size: 300
+    parameters:
+      variant: variance
+      break_fraction: 0.50
+      mean_1: 0.01
+      mean_2: 0.01
+      volatility_1: 0.04
+      volatility_2: 0.18

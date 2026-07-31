@@ -1,0 +1,29 @@
+profiles:
+  - name: validity-first
+    coverage_error: 4.0
+    interval_width: 0.25
+    invalid_method: 10.0
+    harmful_nonabstention: 12.0
+    unnecessary_abstention: 1.0
+    execution_failure: 10.0
+    abstention: 0.0
+    runtime: 0.0
+    interval_width_scale: 1.0
+    runtime_scale_seconds: 1.0
+    notes: >-
+      Policy profile emphasizing analytical eligibility, calibration, and
+      avoiding a claim when the target is not well-defined.
+  - name: efficiency-balanced
+    coverage_error: 3.0
+    interval_width: 1.0
+    invalid_method: 4.0
+    harmful_nonabstention: 5.0
+    unnecessary_abstention: 2.0
+    execution_failure: 5.0
+    abstention: 0.25
+    runtime: 0.25
+    interval_width_scale: 1.0
+    runtime_scale_seconds: 1.0
+    notes: >-
+      Policy profile balancing calibration, interval width, abstention, and
+      wall-clock runtime; it is not asserted to be universally correct.

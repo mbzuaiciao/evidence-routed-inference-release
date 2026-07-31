@@ -1,0 +1,63 @@
+\section{Reproducibility, Hashes, Manifests, and Evidence Ledger}
+\label{supp:reproducibility}
+
+\paragraph{Evidence ledger.}
+The machine-readable evidence ledger is the manuscript's quantitative source
+of truth.  Each claim records denominator, estimand, evidence class, canonical
+source and SHA-256, derivation script, failure treatment, caveats, and
+permitted and prohibited wording.  At manuscript preparation, all 20 listed
+source hashes verified.
+
+\paragraph{Phase 4J artifacts.}
+The checked-in scientific dossier and archive manifest are bound to execution
+commit:
+\begin{quote}
+\ttfamily
+ada98aa1e7a9789ea4cb\\
+b8943e3abd6e22150183
+\end{quote}
+The referenced raw archive digest is:
+\begin{quote}
+\ttfamily
+sha256:6bf634651ea48b941488ebcb\\
+f3b4f8dd718c54796410af3b\\
+faca7e59e517396
+\end{quote}
+The archive itself is absent from this clean paper worktree, so the ledger
+anchors Phase~4J values to the checked-in dossier, manifest, and aggregate
+CSV/JSON rather than claiming a new independent archive verification.
+
+\paragraph{Phase 5B preservation.}
+The recovered Phase~5B freeze has SHA-256:
+\begin{quote}
+\ttfamily
+b5cae3d5d0f334ee099cbd5875a37528\\
+54c184ab09f5f30ef18317cda142f1dc
+\end{quote}
+Its four source hashes match commit:
+\begin{quote}
+\ttfamily
+3bbc070df3a43439464d\\
+75f3b662285ab6146c88
+\end{quote}
+The freeze instead records the invalid identifier:
+\begin{quote}
+\ttfamily
+3bbc07062fa9cf4fe08e\\
+d5713dd2f7ea06edae8b
+\end{quote}
+This is treated as an identifier-recording error; the historical freeze and
+authorization are not rewritten.
+
+\paragraph{Deterministic recomputation.}
+The preserved recomputation script constructs the 72-unit denominator,
+reconstructs the two terminal failures, calculates condition metrics and
+paired contrasts, applies a fixed scenario-cluster bootstrap seed, and writes
+a derived manifest containing input and output hashes.  Canonical
+Interpretation P follows the preregistered loss-minus-oracle definition.
+
+\paragraph{Limits of artifact claims.}
+The Phase~5B recovery manifest verifies copied run artifacts, provenance, and
+runtime sources from recovery time; it does not establish execution-time
+integrity.  Scientific outcomes and planned counts are artifact-backed.
+Several request, token, and cost quantities are transcript-backed only.

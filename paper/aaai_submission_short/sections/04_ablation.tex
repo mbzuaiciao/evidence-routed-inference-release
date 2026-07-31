@@ -1,0 +1,72 @@
+\section{Controlled Ablation Design}
+\label{sec:ablation}
+
+Every Phase~5B condition runs on the same 18 cells with nominal output
+capacity of 8,192 tokens.  Table~\ref{tab:conditions} gives the frozen
+implementations.
+
+\input{tables/conditions}
+
+Condition A is the concise two-call reference.  B preserves that call count
+and single unified persona while adding explicit responsibilities for
+planning, provenance assessment, review, and reporting.  C retains B's
+substantive instruction content but externalizes those responsibilities over
+four calls in one continuing workflow.  D assigns the stages to four
+specialized roles.  Equal nominal output capacity prevents the four-call
+conditions from receiving a larger aggregate token ceiling, although actual
+context accumulation and message interfaces still differ.
+
+The four-call workflows externalize planning, provenance assessment, review,
+and final reporting.  C executes these responsibilities within a unified
+identity and continuing state.  D assigns them to specialized roles with
+explicit intermediate interfaces.  A and B use two calls, with the second
+producing the final decision after an initial reasoning stage.  Thus the
+sequence adds instruction specificity before it adds external stages, and adds
+specialization only after the staged unified condition exists.
+
+The contrasts have different interpretations.  \(B-A\) most cleanly isolates
+instruction enrichment: both use a single persona and two calls, while B
+replaces concise instructions with explicit unified responsibilities.
+\(C-B\) holds substantive instructions and nominal output capacity fixed, but
+changes two calls into four stages, accumulated context, and persisted
+intermediate state.  It therefore evaluates the tested unified multi-call
+implementation, not a context-free quantity called reasoning depth.
+\(D-C\) compares unified and role-specialized four-call workflows, but also
+changes persona scoping, context partitioning, interfaces, and message flow;
+it is a bundled residual architectural comparison, not a pure persona
+intervention.
+
+The design has 72 intended condition--cell units and 216 planned calls,
+\(18(2+2+4+4)\), with zero retries and repairs.  All intended units remain in
+the denominator.  Two provider-schema failures are retained under the
+preregistered fail-closed interpretation rather than repaired or omitted.
+Point estimates are paired all-cell mean regret differences; supporting
+analyses use completed pairs, scenario-family comparisons, a two-cluster
+bootstrap, and leave-one-extreme-cell trimming.  Because there are only two
+scenario clusters, intervals are descriptive rather than population-level
+significance claims.  Complete implementation and accounting are in
+Supplement Sections E and I.
+
+The execution was frozen before analysis: the registry, visible evidence,
+prompts, output schemas, provider configuration, seeds, retry policy, and loss
+profile were fingerprinted.  All conditions used the same hosted model and
+provider policy with thinking disabled.  The system issued no retries and
+performed no schema repairs, so a malformed provider output became a terminal
+unit outcome rather than a hidden extra opportunity.  These controls support
+within-pilot attribution but do not remove provider nondeterminism or make the
+workflow factors factorial.
+
+The preregistered contrast is \(C-B\); \(B-A\) and \(D-C\) are supporting
+component contrasts.  We report all-cell estimates, which preserve the
+complete denominator under fail-closed treatment, and completed-pair
+estimates, which expose the effect of terminal failures without replacing the
+canonical analysis.  Scenario and trimming analyses diagnose concentration
+rather than serving as post hoc alternatives to the registered estimand.
+
+Equal nominal output capacity is not equal realized computation.  Four-call
+conditions accumulate different input contexts and have more synchronization
+boundaries.  We therefore avoid describing \(C-B\) as a pure
+test-time-compute effect.  Likewise, D introduces role schemas and handoffs in
+addition to personas.  The contrast labels encode the observed condition
+differences, while the prose states which mechanism each comparison can and
+cannot isolate.

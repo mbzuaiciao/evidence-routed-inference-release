@@ -1,0 +1,34 @@
+run_label: phase3b-pilot
+benchmark_version: phase3b-0.3
+output_root: runs/phase3b
+scenario_source: configs/benchmark/phase3a-mini.yaml
+loss_profiles_source: configs/benchmark/loss-profiles.yaml
+loss_profiles: [validity-first, efficiency-balanced]
+confidence_level: 0.95
+hac_bandwidth: 5
+bootstrap_block_length: 10
+bootstrap_seed: 900000
+oracle_stability_blocks: 3
+oracle_weak_margin: 0.01
+generate_figures: true
+independent_review_complete: false
+max_projected_hackathon_seconds: 900.0
+max_projected_hackathon_bytes: 524288000
+seed_namespaces:
+  version: phase3b-seeds-1.0
+  namespace_width: 1000000
+  oracle_training_start: 31000000
+  development_evaluation_start: 32000000
+  hackathon_evaluation_start: 33000000
+  aaai_evaluation_start: 34000000
+  frozen_confirmation_start: 35000000
+  development_evaluation_count: 25
+  hackathon_evaluation_count: 250
+  aaai_evaluation_count: 2000
+  frozen_confirmation_count: 2000
+
+bootstrap_replications: 50
+oracle_training_draws: 25
+evaluation_draws: 25
+evaluation_namespace: development-evaluation
+oracle_stability_sizes: [8, 25]

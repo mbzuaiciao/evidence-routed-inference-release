@@ -1,0 +1,17 @@
+configuration_version: phase4b-agent-1.0
+system: monolithic-agent
+prompt_version: phase4b-monolithic-1.0
+role_prompt: >-
+  Analyze only the supplied evidence and provenance text; request registered
+  diagnostics within budget; distinguish unknowns; recommend a registered
+  method or abstention; cite evidence in the final report.
+provider: inherited-from-benchmark
+model: inherited-from-benchmark
+temperature: inherited-from-benchmark
+maximum_response_tokens: inherited-from-benchmark
+maximum_model_calls: inherited-from-benchmark
+diagnostic_budget: inherited-from-cell
+sensitivity_budget: inherited-from-cell
+tools: inherited-from-benchmark
+hidden_truth_access: false
+arbitrary_code_execution: false

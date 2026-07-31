@@ -1,0 +1,28 @@
+% Evidence: canonical Phase 5B condition_metrics.json, paired_contrasts.json,
+% uncertainty_results.json, and sensitivity_analysis.csv.
+\begin{table*}[t]
+\centering
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Condition & Mean regret & Invalid & Harmful & Claim valid & Failed \\
+\midrule
+A & 4.723122 & 38.89\% & 16.67\% & 61.11\% & 1 \\
+B & 1.389345 & 11.11\% & 11.11\% & 88.89\% & 1 \\
+C & 0.250287 & 0\% & 0\% & 100\% & 0 \\
+D & 3.598322 & 22.22\% & 11.11\% & 77.78\% & 0 \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Paired all-cell regret contrasts
+(scenario-cluster interval)}}\\
+\(B-A\) & \multicolumn{2}{l}{\(-3.333777\)}
+  & \multicolumn{3}{l}{\([-4.111998,-2.555556]\)} \\
+\(C-B\) & \multicolumn{2}{l}{\(-1.139058\)}
+  & \multicolumn{3}{l}{\([-2.444444,0.166328]\)} \\
+\(D-C\) & \multicolumn{2}{l}{\(+3.348035\)}
+  & \multicolumn{3}{l}{\([1.807181,4.888889]\)} \\
+\bottomrule
+\end{tabular}
+\caption{Canonical fail-closed outcomes, \(N=18\) per condition.  Lower
+regret is better.  Intervals use only two scenario clusters and are
+pilot-descriptive, not conventional significance claims.}
+\label{tab:main-results}
+\end{table*}

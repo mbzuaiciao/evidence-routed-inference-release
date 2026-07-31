@@ -1,0 +1,124 @@
+\section{Results}
+\label{sec:results}
+
+Table~\ref{tab:main-results} combines condition outcomes with the three
+component contrasts.  Condition C has the strongest aggregate profile:
+mean regret \(0.250287\), no invalid selections or harmful non-abstentions,
+and valid claims in all 18 cells.  Aggregates alone, however, obscure
+concentration and do not establish uniform superiority.
+
+Condition A records mean regret \(4.723122\), 38.89\% invalid selections,
+16.67\% harmful non-abstentions, and 61.11\% claim validity.  B improves these
+metrics to \(1.389345\), 11.11\%, 11.11\%, and 88.89\%, respectively.  D has
+mean regret \(3.598322\), with 22.22\% invalid selections, 11.11\% harmful
+non-abstentions, and 77.78\% claim validity.  These condition-level summaries
+describe all intended units under canonical fail-closed accounting.
+
+The mean and validity outcomes answer different questions.  Routing regret
+aggregates the registered costs of each decision, whereas the categorical
+rates show which scientific boundary was crossed.  C improves both in the
+observed cells; D's higher mean accompanies invalid selections and harmful
+continuations despite having no terminal execution failures.  Successful
+transport is therefore not equivalent to a scientifically valid output.
+
+\input{tables/main_results}
+
+\paragraph{Instruction richness.}
+Richer unified instructions reduce mean regret relative to concise prompting:
+\(B-A=-3.333777\).  The direction is negative in both scenario families,
+under the two-cluster interval \([-4.111998,-2.555556]\), and after trimming
+(trimmed mean \(-2.235764\)).  Invalid selections fall from 38.89\% to
+11.11\%, and claim validity rises from 61.11\% to 88.89\%.  This is the
+clearest and most stable pilot result, without implying a population-level
+effect.
+
+The complete-pair mean is \(-3.735074\) over 16 pairs.  Scenario means are
+\(-4.111998\) for GARCH and \(-2.555556\) for structural breaks.  Unlike
+\(C-B\), its direction does not depend on retaining the largest absolute cell
+difference.  The evidence therefore supports instruction enrichment as the
+most stable explanatory component among the tested changes.
+
+The contrast also separates instruction quality from a broad architectural
+label.  A and B share the two-call unified structure and nominal output
+capacity; the principal planned difference is that B explicitly assigns
+planning, evidence assessment, review, and reporting responsibilities.  The
+observed reduction therefore supports better task specification in this
+benchmark rather than an inference about adding agents or calls.
+
+\paragraph{Unified multi-call execution.}
+The preregistered contrast favors C in the all-cell aggregate:
+\(C-B=-1.139058\) (17-pair mean \(-1.206062\)).  The scenario-cluster interval
+\([-2.444444,0.166328]\) crosses zero.  One severe structural-break cell
+contributes 88.1\% of the total absolute contrast magnitude; excluding it
+changes the mean to \(+0.088056\).  GARCH favors B
+(\(+0.166328\)), whereas structural breaks favor C
+(\(-2.444444\)).  C thus has the best observed aggregate profile, but the
+pilot does not establish a broad staged-execution advantage.
+
+This qualification matters despite C's favorable condition-level metrics.
+Its zero invalid selections and 100\% claim validity describe the observed 18
+cells, while the contrast asks what C adds over instruction-matched B.  The
+answer is largely prevention of one high-loss failure rather than uniformly
+lower regret on ordinary cells.  The prespecified five-cell diagnostic subset
+has contrast zero, further limiting a general mechanism claim.
+
+Under completed pairs, the mean remains negative because B's failed unit is
+excluded alongside its matched C unit, but this does not resolve
+concentration.  The leave-one-extreme-cell result and opposite scenario
+directions show that the observed average does not reflect a uniform shift.
+The correct descriptive statement is that C prevented a severe registered
+failure while otherwise remaining close to B on many cells.
+
+\paragraph{Specialized workflow.}
+The tested specialized bundle performs worse than unified C:
+\(D-C=+3.348035\), with interval \([1.807181,4.888889]\).  The direction
+persists across both scenario families and trimming.  Because D also changes
+prompt scoping, interfaces, context partitioning, and message flow, the result
+does not identify persona identity as the cause and does not show that
+multi-agent systems are generally inferior.
+
+All 18 \(D-C\) pairs completed.  Scenario means are \(+1.807181\) for GARCH
+and \(+4.888889\) for structural breaks, and the positive direction survives
+removing the largest absolute cell.  This stability describes the tested
+bundles more consistently than \(C-B\), but it cannot remove their
+architectural confounding.
+
+D's worse aggregate result is not explained by a larger nominal output
+budget: C and D each allocate 8,192 output tokens across four calls.  It may
+instead reflect any combination of persona scoping, intermediate contracts,
+context partitioning, or coordination.  The benchmark does not distinguish
+these explanations.  Consequently, the stable positive \(D-C\) contrast
+characterizes the implementations without identifying role specialization as
+the causal mechanism.
+
+\paragraph{Boundary and failures.}
+As a secondary Phase~4J baseline, the adaptive deterministic policy obtains
+approximately \(0.0013\) mean regret.  It was co-developed with the benchmark
+and directly encodes its diagnostic-acquisition and admissibility rules, so it
+marks a formalizability boundary rather than a general architectural ranking.
+All 72 Phase~5B units remain in the denominator; two provider-schema failures
+receive the preregistered fail-closed loss treatment.  Full baseline results,
+failure reconstruction, alternate interpretations, and sensitivities appear
+in Supplement Sections F--H.
+
+The two failed units occur once in A and once in B.  Canonical interpretation
+assigns terminal failed loss and then subtracts matched oracle loss; it does
+not invent a selected method.  Keeping these cases preserves \(N=18\) for
+every condition.  Completed-pair and alternate direct-regret treatments are
+reported separately and do not replace the canonical all-cell results.
+
+The two failures also illustrate why execution reliability is part of the
+scientific denominator.  Treating them as absent would compare different
+cell sets and could reward a condition for failing on difficult cases.
+Conversely, canonical fail-closed loss does not pretend to observe a decision
+that was never emitted.  The supplement therefore retains the terminal record,
+matched oracle loss, canonical loss construction, and alternate sensitivity
+interpretation separately.
+
+Under the alternate direct-regret interpretation, the failed units receive a
+fixed penalty rather than terminal loss minus the matched oracle loss.  This
+changes selected numerical contrasts but does not turn the concentrated
+\(C-B\) result into a uniform scenario effect or reverse the stable direction
+of \(B-A\) and \(D-C\).  We retain the registered interpretation as primary
+and use the alternate calculation only to expose dependence on failure
+accounting.

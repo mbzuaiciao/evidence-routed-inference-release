@@ -1,0 +1,20 @@
+configuration_version: phase4b-agent-1.0
+system: unconstrained-specialized-agents
+prompt_version: phase4b-unconstrained-1.0
+role_prompt: >-
+  Planner, provenance, reviewer, and report roles may exchange free-form
+  recommendations using only supplied information and registered tools; cite
+  support, surface unknowns, and provide a final registered recommendation.
+provider: inherited-from-benchmark
+model: inherited-from-benchmark
+temperature: inherited-from-benchmark
+maximum_response_tokens: inherited-from-benchmark
+maximum_model_calls: inherited-from-benchmark
+diagnostic_budget: inherited-from-cell
+sensitivity_budget: inherited-from-cell
+tools: inherited-from-benchmark
+typed_evidence_constraints: false
+deterministic_recommendation_veto: false
+safe_registered_execution_only: true
+hidden_truth_access: false
+arbitrary_code_execution: false

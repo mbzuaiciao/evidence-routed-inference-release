@@ -1,0 +1,84 @@
+\section{Related Work}
+\label{sec:related-work}
+
+LLMs can support mathematics, data analysis, and scientific workflows
+\citep{GuEtAl2024BLADE,LiuEtAl2024QRData}, but completing a requested
+calculation does not establish that the procedure is admissible.  Statistical
+work on model selection and selective prediction distinguishes estimation
+from assumption checking and abstention
+\citep{LeebPotscher2005,Chow1970Reject}.  ERI applies this distinction to
+method routing under diagnostic evidence.  It evaluates whether a workflow
+connects observed assumption evidence to an eligible method or abstains when
+the target or procedure is unsupported, rather than scoring only the final
+number.
+
+This distinction connects scientific reasoning to selective prediction:
+abstention is not a generic refusal but a valid action when available evidence
+does not support a unique procedure \citep{Chow1970Reject}.  It also differs
+from asking a model to execute a user-specified test.  Here, the method is
+itself an output constrained by evidence, and an apparently precise result can
+receive high loss when its validity conditions are contradicted.
+
+Agentic systems add planning, tools, state, or role-specialized interaction
+\citep{YaoEtAl2023ReAct,HongEtAl2024MetaGPT}.  Controlled evaluations show
+that apparent multi-agent advantages can diminish when reasoning budgets or
+execution protocols are aligned: Tran--Kiela equalize thinking-token budgets,
+while BenchAgent normalizes tools, answer contracts, accounting, and
+trajectories \citep{TranKiela2026,FuEtAl2026BenchAgent}.  ERI complements
+these broader preprint comparisons with a narrower validity-sensitive
+component analysis.  We separately compare concise and enriched instructions,
+matched substantive instructions under two- and four-call execution, and a
+residual unified-versus-specialized architecture.  Outcomes include invalid
+selection, harmful non-abstention, claim validity, abstention, and fail-closed
+regret; we claim neither first-of-kind priority nor a general single-agent
+advantage.
+
+These close precedents matter for novelty calibration.  Equalizing thinking
+tokens, normalizing tools and answer contracts, or comparing single- and
+multi-agent workflows is not new in itself.  Our narrower contribution is to
+place a sequence of instruction and workflow comparisons inside a statistical
+task where invalid method selection and harmful continuation can be scored
+separately from answer quality.  The comparison supports component-sensitive
+interpretation only in this limited sense; it does not recover independent
+causal effects for every architectural choice.
+
+Test-time computation and harnesses alter call organization, context, and
+search \citep{WeiEtAl2022CoT,WangEtAl2023SelfConsistency,
+SnellEtAl2025TestTime}.  EnCompass separates a workflow from search over its
+execution paths \citep{LiEtAl2025EnCompass}; the non-archival
+Zhang--Khattab technical blog frames harnesses as compositional structure for
+context offloading and decomposition \citep{ZhangKhattab2026Harness}.  ERI is
+not a competing harness and does not test compositional generalization.  It
+asks which bundled components---instruction enrichment, call structure, and
+specialized workflow boundaries---relate to decision quality in fixed tasks.
+EnCompass primarily studies search over an existing workflow, while the
+Zhang--Khattab communication treats a harness as higher-level compositional
+structure.  Our workflows instead hold benchmark cells fixed and attribute
+observed differences among a small set of execution designs.
+
+Sequential reasoning methods likewise allocate computation through
+chain-of-thought, repeated sampling, search, or critique
+\citep{WeiEtAl2022CoT,WangEtAl2023SelfConsistency,
+SnellEtAl2025TestTime}.  Such methods establish that additional test-time
+computation can improve outcomes, but often jointly change accumulated
+context, verification opportunities, and instructions.  Conditions B and C
+hold substantive responsibilities and nominal output capacity fixed while
+changing their external staging.  Because context and persisted state still
+change, the contrast remains a qualified implementation comparison, not a
+context-free estimate of ``reasoning depth.''
+
+Finally, neuro-symbolic systems combine learned interpretation with explicit
+constraints or solvers \citep{PanEtAl2023LogicLM}.  We do not claim that
+deterministic routing, pretesting, or abstention is new.  The deterministic ERI
+policy instead supplies a benchmark-specific boundary: once evidential
+admissibility is completely formalized, stochastic judgment at the final
+decision may add no value.  The primary contribution remains the controlled
+sequence of workflow contrasts, without first-of-kind or population-level claims.
+
+This boundary is complementary to, rather than a replacement for, flexible
+model reasoning.  Hybrid systems can use learned interpretation for
+unstructured evidence while retaining explicit constraints for decisions that
+can be audited exactly.  ERI evaluates the unusually formalizable end of that
+spectrum.  It therefore cannot establish that deterministic policies will
+dominate in domains whose evidence ontology, admissibility conditions, or
+scientific objectives are incomplete.
